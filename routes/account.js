@@ -40,7 +40,7 @@ router.post('/register', function(req, res) {
             res.send({status: -1}).end();   //服务器异常
         } else {
             console.log(ret);
-            if (res<0){
+            if (ret<0){
                 res.send({status: 0}).end(); //缺少信息
             }
             else {
@@ -49,4 +49,6 @@ router.post('/register', function(req, res) {
         }
     });
 });
+
+
 module.exports = router;
