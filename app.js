@@ -5,7 +5,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let session = require('express-session'); 
 //let paymentProcessRouter = require('./routes/paymentProcess');  
-let exampleRouter = require('./routes/example'); //样例理由
+let accountRouter = require('./routes/account'); //样例理由
 
 let app = express();
 
@@ -24,7 +24,7 @@ app.use(session({secret: 'recommand 128 bytes random string', // 建议使用 12
 }));  //这些是写在app.js里面的    
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/example', exampleRouter);   //样例路由
+app.use('/', accountRouter);   //样例路由
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
