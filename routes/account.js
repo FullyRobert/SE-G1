@@ -1,12 +1,12 @@
 let express = require('express');
 let router = express.Router();
-let amodel = require('../models/accountmentModel.js');
+let amodel = require('../models/accountModel.js');
 let utils = require('../models/utils.js');
 let app = express();
 
 
 router.get('/', function(req, res, next) {
-	res.render('login');
+	res.render('regis');
 });
 
 router.post('/login',function(req, res) {
@@ -33,3 +33,4 @@ router.post('/login',function(req, res) {
     });
 });
 
+module.exports = router;
