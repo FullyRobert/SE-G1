@@ -51,8 +51,8 @@
                   <strong>Great Job!</strong>
                   <p>Biscuit macaroon tootsie roll croissant. Dessert candy canes halvah cookie liquorice. Candy canes muffin gummies jujubes brownie. Pie cake pie pastry sugar plum jelly apple pie cotton candy.</p></i>
                 </div></a></li> -->
-            <!-- <li class="nav-item"><a href="example/index.ejs" class="navbar-brand nav-link"><img alt="branding logo" src="../app-assets/images/logo/robust-logo-light.png" data-expand="../app-assets/images/logo/robust-logo-light.png" data-collapse="../app-assets/images/logo/robust-logo-small.png" class="brand-logo"></a></li> -->
-            <li class="nav-item"><a href="example/index.ejs" class="navbar-brand nav-link">在线支付系统</a></li>
+            <!-- <li class="nav-item"><a href="index.ejs" class="navbar-brand nav-link"><img alt="branding logo" src="../app-assets/images/logo/robust-logo-light.png" data-expand="../app-assets/images/logo/robust-logo-light.png" data-collapse="../app-assets/images/logo/robust-logo-small.png" class="brand-logo"></a></li> -->
+            <li class="nav-item"><a href="index.ejs" class="navbar-brand nav-link">在线支付系统</a></li>
             <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x fa-rotate-90"></i></a></li>
           </ul>
         </div>
@@ -63,7 +63,7 @@
               <li class="nav-item hidden-sm-down"><a href="#" class="nav-link nav-link-expand"><i class="ficon icon-expand2"></i></a></li>
             </ul>
             <ul class="nav navbar-nav float-xs-right">
-              <li class="nav-item"><a href="example/regis.ejs" target="_blank" class="btn btn-success btn-doc-header"><i class="icon-bag3"></i> 登陆</a></li>
+              <li class="nav-item"><a href="login.ejs" target="_blank" class="btn btn-success btn-doc-header"><i class="icon-bag3"></i> 登陆</a></li>
               <li class="nav-item"><a href="https://pixinvent.com/bootstrap-admin-template/robust/" target="_blank" class="btn btn-success btn-doc-header"><i class="icon-bag3"></i> 我的</a></li>
             </ul>
           </div>
@@ -81,11 +81,22 @@
       <!-- main menu content-->
       <div class="main-menu-content menu-accordion">
         <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-          <li class="active"><a href="example/account.ejs"><i class="icon-home3"></i><span data-i18n="" class="menu-title">我的账户</span></a>
+		<li class=" nav-item"><a href="index.ejs"><i class="icon-home3"></i><span data-i18n="nav.dash.main" class="menu-title">我的账户</span></a>
+					<ul class="menu-content">
+					  <li><a href="account.ejs" data-i18n="nav.dash.main" class="menu-item">修改信息</a>
+					  </li>
+					  <li><a href="change_passwd.ejs" data-i18n="nav.dash.main" class="menu-item">密码找回</a>
+					  </li>
+					  <li><a href="balance.ejs" data-i18n="nav.dash.main" class="menu-item">余额与充值</a>
+					  </li>
+					  <li><a href="admin.ejs" data-i18n="nav.dash.main" class="menu-item">管理后台</a>
+					  </li>
+					</ul>
+				  </li>
           </li>
-          <li class=" nav-item"><a href="example/documentation-introduction.ejs"><i class="icon-android-menu"></i><span data-i18n="" class="menu-title">在线预定</span></a>
+          <li class=" nav-item"><a href="documentation-introduction.ejs"><i class="icon-android-menu"></i><span data-i18n="" class="menu-title">在线预定</span></a>
           </li>
-          <li class=" nav-item"><a href="example/transaction.ejs"><i class="icon-folder3"></i><span data-i18n="" class="menu-title">我的订单</span></a>
+          <li class=" nav-item"><a href="transaction.ejs"><i class="icon-folder3"></i><span data-i18n="" class="menu-title">我的订单</span></a>
           </li>
         </ul>
       </div>
@@ -129,7 +140,7 @@
                                             <label for="remember-me"> 记住密码</label>
                                         </fieldset>
                                     </div>
-                                    <div class="col-md-6 col-xs-12 text-xs-center text-md-right"><a class="text-success card-link" href="example/recover-password.ejs">忘记密码?</a></div>
+                                    <div class="col-md-6 col-xs-12 text-xs-center text-md-right"><a class="text-success card-link" href="recover-password.ejs">忘记密码?</a></div>
                                 </fieldset>
                                 <button class="btn btn-success btn-doc-header btn-lg btn-block" id="submit-btn"><i class="icon-unlock2"></i> 登陆</button>
                             </form>
@@ -137,7 +148,7 @@
                     </div>
                     <div class="card-footer">
                         <div>
-                            <p class="float-sm-right text-xs-center m-0">没有账户? <a class=" text-success card-link" href="example/register-simple.ejs">注册</a></p>
+                            <p class="float-sm-right text-xs-center m-0">没有账户? <a class=" text-success card-link" href="register-simple.ejs">注册</a></p>
                         </div>
                     </div>
                 </div>
