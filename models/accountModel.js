@@ -18,8 +18,6 @@ module.exports = {
 		} catch (err) {
 			callback(err, undefined);
 		}
-<<<<<<< HEAD
-=======
 	},
 	
 	regis: async function(req, callback) {
@@ -55,4 +53,3 @@ module.exports = {
 }
 
 module.exports = exports;
->>>>>>> 33c424830f5775a3ca3dc3a438f06ccc99aa6ba7
