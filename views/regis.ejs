@@ -109,7 +109,7 @@
                     </div>
                     <div class="card-body collapse in">
                         <div class="card-block">
-                            <form class="form-horizontal form-simple" action="example/index.ejs" novalidate="">
+                            <form class="form-horizontal form-simple"  novalidate="">
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <input class="form-control form-control-lg input-lg" id="user-name" required="" type="text" placeholder="Your Username">
                                     <div class="form-control-position">
@@ -131,7 +131,7 @@
                                     </div>
                                     <div class="col-md-6 col-xs-12 text-xs-center text-md-right"><a class="text-success card-link" href="example/recover-password.ejs">忘记密码?</a></div>
                                 </fieldset>
-                                <button class="btn btn-success btn-doc-header btn-lg btn-block" type="submit"><i class="icon-unlock2"></i> 登陆</button>
+                                <button class="btn btn-success btn-doc-header btn-lg btn-block" id="submit-btn"><i class="icon-unlock2"></i> 登陆</button>
                             </form>
                         </div>
                     </div>
@@ -172,5 +172,33 @@
     <script src="../app-assets/js/scripts/documentation.js" type="text/javascript"></script>
     <script src="../app-assets/vendors/js/ui/affix.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    <script type="text/javascript">
+      $(document).ready(function () {
+      });
+      $("button").click(function () {
+        let username=$("#user-name").val();
+        let password=$("#user-password").val();
+        $.ajax({dataType:"JSON",
+          data: {
+            username: username,
+            password: password
+          },
+          url: "/login",
+          type: "POST",
+            success: function(data) {
+            if(data.status == 1)
+            {
+              window.location.href="./index.ejs";
+              alert("登陆成功");
+            }
+            else 
+            {
+              alert("Boom! You SB!");
+            }
+          }
+        });
+      });
+
+    </script>
   </body>
 </html>

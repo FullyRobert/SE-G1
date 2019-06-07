@@ -30,7 +30,32 @@ router.post('/login',function(req, res) {
         		res.send({status: 0}).end();   //验证失败
         	}
         }
+        //res.send({status:1}).end();
     });
 });
+
+router.get('/index.ejs', (req,res) =>
+	{ res.render('index'); });
+router.get('/account.ejs', (req,res) =>
+	{ res.render('account'); });
+router.get('/admin.ejs', (req,res) =>
+	{ res.render('admin'); });
+router.get('/balance.ejs', (req,res) =>
+	{ res.render('balance'); });
+router.get('/change_passwd.ejs', (req,res) =>
+	{ res.render('change_passwd'); });
+router.get('/error.ejs', (req,res) =>
+	{ res.render('error'); });
+router.get('/example.ejs', (req,res) =>
+	{ res.render('example'); });
+router.get('/index.ejs', (req,res) =>
+	{ res.render('index'); });
+router.get('/refund.ejs', (req,res) =>
+	{ res.render('refund'); });
+router.get('/regis.ejs', (req,res) =>
+	{ res.render('regis'); });
+router.get('/transaction.ejs', (req,res) =>
+	{ res.render('transaction'); });
+
 
 module.exports = router;
