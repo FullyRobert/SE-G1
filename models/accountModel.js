@@ -49,7 +49,19 @@ module.exports = {
 			callback(err, undefined);
 		}
 	},
-	
+
+	getinfo:  async function(req, callback) {
+		try{
+			const conn = await pool.getConnection();  
+			let id=req.session.token.uid;
+			let sql = "select * from user where id = '"+ id +"'";
+			ret = await conn.query(sql);
+			callback(undefined,ret[0]);
+			conn.release();
+		} catch (err) {
+			callback(err, undefined);
+		}
+	},
 }
 
 module.exports = exports;

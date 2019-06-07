@@ -6,10 +6,27 @@ let app = express();
 
 
 router.get('/', function(req, res, next) {
-	res.render('regis');
+	res.render('login');
 });
 
-router.post('/regis',function(req, res) {
+router.get('/showinfo', function(req, res) {
+    //登陆校验
+    if (!req.session.token) {
+		console.log("登录态过期，请重新登录！");
+        res.redirect('login');
+        return;
+    }
+    amodel.getinfo(req, function(err, ret) {
+        if (err) {
+        	console.log(err);
+            res.send({status: -1}).end();   //服务器异常
+        } else {
+            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr=ret.emailAddr});
+        }
+    });
+});
+
+router.post('/login',function(req, res) {
     amodel.check_login(req, function(err, ret) {
         if (err) {
         	console.log(err);
@@ -49,6 +66,8 @@ router.post('/register', function(req, res) {
         }
     });
 });
+
+
 
 
 module.exports = router;
