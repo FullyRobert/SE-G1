@@ -44,7 +44,7 @@ router.get('/showinfo', function(req, res) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
         } else {
-            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr=ret.emailAddr});
+            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber: ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr: ret.emailAddr});
         }
     });
 });
