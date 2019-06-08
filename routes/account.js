@@ -19,12 +19,18 @@ router.get('/showinfo', function(req, res) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
         } else {
-            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr=ret.emailAddr});
+            //res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr=ret.emailAddr});
         }
     });
 });
 
+router.post('/changeinfo',function(req,res){
+    res.send({status : 1});
+});
+
 router.post('/login',function(req, res) {
+        res.send({status:1}).end();
+        return ;
     amodel.check_login(req, function(err, ret) {
         if (err) {
         	console.log(err);
@@ -50,6 +56,8 @@ router.post('/login',function(req, res) {
 });
 
 router.post('/register', function(req, res) {
+    res.send({status: 1}).end(); //成功
+    return ;
     amodel.regis(req, function(err, ret) {
         if (err) {
         	console.log(err);
@@ -77,10 +85,19 @@ router.get('/example', (req, res) => {
     }
 });
 
+router.get('/account.ejs', (req, res) => {
+    res.render('account',
+        {
+            realName: "嘤菜鸡",
+            lisenceNumber: "233333",
+            emailAddr: "CaijiYing@zju.edu.cn",
+            phoneNumber: "18888438438",
+            dateOfBirth: "1998-04-01"
+        });
+});
+
 router.get('/index.ejs', (req,res) =>
 	{ res.render('index'); });
-router.get('/account.ejs', (req,res) =>
-	{ res.render('account'); });
 router.get('/admin.ejs', (req,res) =>
 	{ res.render('admin'); });
 router.get('/balance.ejs', (req,res) =>
