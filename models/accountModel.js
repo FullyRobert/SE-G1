@@ -48,7 +48,7 @@ module.exports = {
 		}
 	},
 
-	getinfo:  async function(req, callback) {
+	getinfo: async function(req, callback) {
 		try{
 			const conn = await pool.getConnection();  
 			let id=req.session.token.uid;
@@ -60,6 +60,35 @@ module.exports = {
 			callback(err, undefined);
 		}
 	},
+
+	updateinfo: async function(req, callback) {
+		try{
+			const conn = await pool.getConnection();  
+				let username = req.body.username;
+				let password = req.body.password;
+				let realName = req.body.realName;
+				let licenseNumber = req.body.licenseNumber;
+				let dateOfBirth = req.body.dateOfBirth;
+				let phoneNumber = req.body.phoneNumber;
+				let emailAddr = req.body.emailAddr;
+				let payPassword = req.body.payPassword;
+				
+				if (username===null || password===null || realName===null|| licenseNumber===null|| dateOfBirth===null|| phoneNumber===null || emailAddr===null || payPassword===null)
+				{
+					callback(undefined,-1);
+				}
+				else
+				{
+					let sqlupdate = "update user set username = '"+ username +"',password = '"+ password +"',realName = '"+ realName+"',licenseNumber = '"+ licenseNumber+"',dateOfBirth = '"+ dateOfBirth+"',phoneNumber = '"+ phoneNumber  +"',emailAddr = '"+ emailAddr  +"',payPassword = '"+ payPassword  +"' where id = " + req.session.token.uid;
+					ret = await conn.query(sqlupdate);
+					callback(undefined,ret[0].id);
+				}
+			conn.release();
+		} catch (err) {
+			callback(err, undefined);
+		}
+	},
+
 }
 
 module.exports = exports;

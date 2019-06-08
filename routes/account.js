@@ -24,10 +24,6 @@ router.get('/showinfo', function(req, res) {
     });
 });
 
-router.post('/changeinfo',function(req,res){
-    res.send({status : 1});
-});
-
 router.post('/login',function(req, res) {
         res.send({status:1}).end();
         return ;
@@ -55,9 +51,51 @@ router.post('/login',function(req, res) {
     res.send({status:1}).end();
 });
 
+router.get('/showinfo', function(req, res) {
+    //登陆校验
+    if (!req.session.token) {
+		console.log("登录态过期，请重新登录！");
+        res.redirect('/login');
+        return;
+    }
+    amodel.getinfo(req, function(err, ret) {
+        if (err) {
+        	console.log(err);
+            res.send({status: -1}).end();   //服务器异常
+        } else {
+            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber: ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr: ret.emailAddr});
+        }
+    });
+});
+
 router.post('/register', function(req, res) {
     res.send({status: 1}).end(); //成功
     return ;
+     //登陆校验
+     if (!req.session.token) {
+		console.log("登录态过期，请重新登录！");
+        res.redirect('/login');
+        return;
+    }
+    amodel.updateinfo(req, function(err, ret) {
+        if (err) {
+        	console.log(err);
+            res.send({status: -1}).end();   //服务器异常
+        } else {
+            console.log(ret);
+            if (ret<0){
+                res.send({status: 0}).end(); //缺少信息
+            }
+            else {
+                res.send({status: 1}).end(); //成功
+            }
+        }
+    });
+});
+
+router.post('/updateinfo', function(req, res) {
+    res.send({status: 1}).end(); //成功
+    return ;  // 冒烟
     amodel.regis(req, function(err, ret) {
         if (err) {
         	console.log(err);
