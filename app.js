@@ -7,6 +7,7 @@ let session = require('express-session');
 //let paymentProcessRouter = require('./routes/paymentProcess');  
 let accountRouter = require('./routes/account'); //样例理由
 let indexRouter = require('./routes/index'); //样例理由
+let adminRouter = require('./routes/admin'); // backend router
 let app = express();
 
 // view engine setup
@@ -25,6 +26,7 @@ app.use(session({secret: 'recommand 128 bytes random string', // 建议使用 12
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', accountRouter);   //账户管理路由
+app.use('/admin', adminRouter);   //管理路由
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

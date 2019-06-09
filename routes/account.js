@@ -44,7 +44,7 @@ router.get('/showinfo', function(req, res) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
         } else {
-            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr=ret.emailAddr});
+            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber});
         }
     });
 });
@@ -100,12 +100,11 @@ router.get('/example', (req, res) => {
     }
 });
 
+
 router.get('/index.ejs', (req,res) =>
 	{ res.render('index'); });
 router.get('/account.ejs', (req,res) =>
 	{ res.render('account'); });
-router.get('/admin.ejs', (req,res) =>
-	{ res.render('admin'); });
 router.get('/balance.ejs', (req,res) =>
 	{ res.render('balance'); });
 router.get('/change_passwd.ejs', (req,res) =>
