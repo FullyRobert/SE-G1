@@ -2,9 +2,56 @@ let express = require('express');
 let router = express.Router();
 var ex = require('../models/exampleModel.js');
 var amodel = require('../models/accountModel.js');
+var pmodel = require('../models/passModel.js');
 
 router.get('/', function(req, res, next) {
 	res.render('login');
+});
+
+router.get('/resetpwd', function(req, res){
+    res.render('resetpwd');
+})
+
+router.get('/resetpwd2',function(req, res){
+
+    console.log("test");
+    var token = {
+        username:"hqh",
+        uid:"1",
+    };
+    req.session.token = token;
+
+    res.render('resetpwd2');
+});
+
+router.post('/resetpwd2',function(req,res){
+    pmodel.changePasswd(req, function(err, status){
+        if(err){
+            console.log(err);
+            res.send({status: 3}).end();
+        } else {
+            if (status == 2) {
+                res.send({status: 2}).end();
+            } else if (status == 1) {
+                res.send({status: 1}).end();
+            }
+        }
+    });
+});
+
+router.post('/queryOrder', function(req, res){
+
+    console.log("test");
+
+    pmodel.queryOrder(req, function(err, ret){
+        if (err) {
+            console.log(err);
+            res.send({status: 0}).end();
+        } else {
+            console.log(ret);
+            res.send({status: 1, orders: ret}).end();
+        }
+    });
 });
 
 router.get('/showinfo', function(req, res) {

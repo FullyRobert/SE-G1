@@ -14,6 +14,8 @@
     <link rel="apple-touch-icon" sizes="152x152" href="../app-assets/images/ico/apple-icon-152.png">
     <link rel="shortcut icon" type="image/x-icon" href="../app-assets/images/ico/favicon.ico">
     <link rel="shortcut icon" type="image/png" href="../app-assets/images/ico/favicon-32.png">
+    <script src="jquery/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -124,149 +126,61 @@
                         </li>
                     </ul>
                 </div>
-                <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-                  <div class="breadcrumb-wrapper col-xs-12">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item active">订单总数：3条
-                      </li>
-                    </ol>
-                  </div>
-                </div>
+                
               </div>
               <div class="content-body"><!-- Overview -->
 
-      <div class="card">
-          <div class="card-header">
-              <h4 id="basic-forms" class="card-title">锦江大酒店</h4>
-              <div class="heading-elements">
-                  <ul class="list-inline mb-0">
-                      <li>已付款&nbsp &nbsp &nbsp</li>
-                      <li><a href="https://pixinvent.com/bootstrap-admin-template/robust/" target="_blank" class="btn btn-success">查看详情</a></li>
-                      <!-- <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                      <li><a data-action="expand"><i class="icon-expand2"></i></a></li> -->
-                  </ul>
-              </div>
-          </div>
-          <div class="card-body collapse in" aria-expanded="true">
-              <div class="card-block">
-                    <div class="table-responsive" >
-                            <table class="table table-hover table-striped">
-                                <tbody>
-                                    
-                                        <th>订单内容</th>
-                                        <th class="hidden-xs">订单价格</th>
-                                        <th>下单时间</th>
-                                        <th>买方</th>
-                                        <th>卖方</th>
-                                    
-                                    <tr>
-                                        <td>商务双床房，7.22-7.24</td>
-                                        <td class="hidden-xs">488.00元</td>
-                                        <td>2019.05.16</td>
-                                        <td>应诚君</td>
-                                        <td>何町廷</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-              </div>
-          </div>
-          <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-                <span class="tags float-xs-right">
-                    <span class="tag tag-pill tag-success">确认收货</span>
-                    <span class="tag tag-pill tag-warning"><a href="refund.ejs">申请退款</a></span>
-                </span>
-           </div>
-      </div>
-      <div class="card">
-            <div class="card-header">
-                <h4 id="basic-forms" class="card-title">锦江大酒店</h4>
-                <div class="heading-elements">
-                    <ul class="list-inline mb-0">
-                        <li>已付款&nbsp &nbsp &nbsp</li>
-                        <li><a href="https://pixinvent.com/bootstrap-admin-template/robust/" target="_blank" class="btn btn-success">查看详情</a></li>
-                        <!-- <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li> -->
-                    </ul>
+                <div class="container">
+                  <div class="row">
+                    <table class="table table-hover panel panel-default" id="order_table">
+                      <thead>
+                        <tr>
+                          <th class="col-lg-2">订单id</th>
+                          <th class="col-lg-2">订单时间</th>
+                          <th class="col-lg-2">订单内容</th>
+                          <th class="col-lg-2">订单金额</th>
+                          <th class="col-lg-2">买方id</th>
+                          <th class="col-lg-2">卖方id</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-            </div>
-            <div class="card-body collapse in" aria-expanded="true">
-                <div class="card-block">
-                      <div class="table-responsive">
-                              <table class="table table-hover">
-                                  <tbody>
-                                      
-                                        <th>订单内容</th>
-                                        <th>订单价格</th>
-                                        <th>下单时间</th>
-                                        <th>买方</th>
-                                        <th>卖方</th>
-                                    
-                                    <tr>
-                                        <td>商务双床房，7.22-7.24</td>
-                                        <td>488.00元</td>
-                                        <td>2019.05.16</td>
-                                        <td>应诚君</td>
-                                        <td>何町廷</td>
-                                    </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                </div>
-            </div>
-            <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-                  <span class="tags float-xs-right">
-                      <span class="tag tag-pill tag-success">确认收货</span>
-                      <span class="tag tag-pill tag-warning">申请退款</span>
-                  </span>
-             </div>
-        </div>
-        <div class="card">
-                <div class="card-header">
-                    <h4 id="basic-forms" class="card-title">锦江大酒店</h4>
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li>已付款&nbsp &nbsp &nbsp</li>
-                            <li><a href="https://pixinvent.com/bootstrap-admin-template/robust/" target="_blank" class="btn btn-success">查看详情</a></li>
-                            <!-- <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li> -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-body collapse in" aria-expanded="true">
-                    <div class="card-block">
-                          <div class="table-responsive">
-                                  <table class="table table-hover">
-                                      <tbody>
-                                          
-                                            <th>订单内容</th>
-                                            <th>订单价格</th>
-                                            <th>下单时间</th>
-                                            <th>买方</th>
-                                            <th>卖方</th>
-                                        
-                                        <tr>
-                                            <td>商务双床房，7.22-7.24</td>
-                                            <td>488.00元</td>
-                                            <td>2019.05.16</td>
-                                            <td>应诚君</td>
-                                            <td>何町廷</td>
-                                        </tr>
-                                      </tbody>
-                                  </table>
-                              </div>
-                    </div>
-                </div>
-                <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-                      <span class="tags float-xs-right">
-                          <span class="tag tag-pill tag-success">确认收货</span>
-                          <span class="tag tag-pill tag-warning">申请退款</span>
-                      </span>
-                 </div>
-            </div>
+        
               </div>
             </div>
           </div>
+
+          <script type="text/javascript">
+            $(function(){
+              $.ajax({
+                dataType: "JSON",
+                url: "/queryOrder",
+                type: "POST",
+                success: function(data) {
+                  $("#order_table tbody").empty();
+                  for (let i = 0; i < data.orders.length; i++) 
+                    show_order(data.orders[i]);
+                },
+                error: function(err) {
+                  alert("请求失败!");
+                }
+              });
+            });
+            function show_order(order){
+              $("#order_table tbody").append(
+                "<tr>\n" +  
+                  "<td class=\"col-lg-2\">" + order.order_id + "</td>\n" +
+                  "<td class=\"col-lg-2\">" + order.created_time + "</td>\n" +
+                  "<td class=\"col-lg-2\">" + order.information + "</td>\n" +
+                  "<td class=\"col-lg-2\">" + order.amount + "</td>\n" +
+                  "<td class=\"col-lg-2\">" + order.from_id + "</td>\n" +
+                  "<td class=\"col-lg-2\">" + order.to_id + "</td>\n"
+                  );
+            }
+          </script>
 
     <!-- <footer class="footer footer-static footer-light navbar-border">
       <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2017 <a href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank" class="text-bold-800 grey darken-2">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-xs-block d-md-inline-block">Hand-crafted & Made with <i class="icon-heart5 pink"></i></span></p>
