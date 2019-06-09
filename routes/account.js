@@ -63,7 +63,11 @@ router.get('/showinfo', function(req, res) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
         } else {
+<<<<<<< HEAD
             res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber: ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr: ret.emailAddr});
+=======
+            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber});
+>>>>>>> 3b69149ff2c27d32f13cea09c531ab0ad39c5aeb
         }
     });
 });
@@ -123,6 +127,7 @@ router.get('/example', (req, res) => {
     }
 });
 
+<<<<<<< HEAD
 router.get('/account.ejs', (req, res) => {
     res.render('account',
         {
@@ -138,6 +143,13 @@ router.get('/index.ejs', (req,res) =>
 	{ res.render('index'); });
 router.get('/admin.ejs', (req,res) =>
 	{ res.render('admin'); });
+=======
+
+router.get('/index.ejs', (req,res) =>
+	{ res.render('index'); });
+router.get('/account.ejs', (req,res) =>
+	{ res.render('account'); });
+>>>>>>> 3b69149ff2c27d32f13cea09c531ab0ad39c5aeb
 router.get('/balance.ejs', (req,res) =>
 	{ res.render('balance'); });
 router.get('/change_passwd.ejs', (req,res) =>
