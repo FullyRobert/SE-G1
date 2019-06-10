@@ -31,7 +31,7 @@ module.exports = {
 			let phoneNumber = req.body.phoneNumber;
 			let emailAddr = req.body.emailAddr;
 			let typeOfUser = req.body.typeOfUser;
-			let payPassword = req.body.payPassword;
+			let payPassword = req.body.paypassword;
 			let balance = 0;
 
 			if (username === null || password === null || realName === null || licenseNumber === null || dateOfBirth === null || phoneNumber === null || emailAddr === null || payPassword === null) {
@@ -71,7 +71,7 @@ module.exports = {
 				let dateOfBirth = req.body.dateOfBirth;
 				let phoneNumber = req.body.phoneNumber;
 				let emailAddr = req.body.emailAddr;
-				let payPassword = req.body.payPassword;
+				let payPassword = req.body.paypassword;
 				
 				if (username===null || password===null || realName===null|| licenseNumber===null|| dateOfBirth===null|| phoneNumber===null || emailAddr===null || payPassword===null)
 				{
@@ -88,7 +88,4 @@ module.exports = {
 			callback(err, undefined);
 		}
 	},
-
 }
-
-module.exports = exports;

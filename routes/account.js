@@ -66,14 +66,12 @@ router.get('/showinfo', function(req, res) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
         } else {
-            //res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr=ret.emailAddr});
+            res.render('account.ejs',{username: ret.username, realname: ret.realname, licenseNumber:ret.licenseNumber,dateOfBirth: ret.dateOfBirth, phoneNumber: ret.phoneNumber, emailAddr:ret.emailAddr});
         }
     });
 });
 
 router.post('/login',function(req, res) {
-        res.send({status:1}).end();
-        return ;
     amodel.check_login(req, function(err, ret) {
         if (err) {
         	console.log(err);
@@ -95,7 +93,6 @@ router.post('/login',function(req, res) {
         	}
         }
     });
-    res.send({status:1}).end();
 });
 
 router.get('/showinfo', function(req, res) {
@@ -116,15 +113,7 @@ router.get('/showinfo', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-    res.send({status: 1}).end(); //成功
-    return ;
-     //登陆校验
-     if (!req.session.token) {
-		console.log("登录态过期，请重新登录！");
-        res.redirect('/login');
-        return;
-    }
-    amodel.updateinfo(req, function(err, ret) {
+    amodel.regis(req, function(err, ret) {
         if (err) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
@@ -141,9 +130,7 @@ router.post('/register', function(req, res) {
 });
 
 router.post('/updateinfo', function(req, res) {
-    res.send({status: 1}).end(); //成功
-    return ;  // 冒烟
-    amodel.regis(req, function(err, ret) {
+    amodel.updateinfo(req, function(err, ret) {
         if (err) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
