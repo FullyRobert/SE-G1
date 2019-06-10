@@ -30,16 +30,22 @@ module.exports = {
 			let dateOfBirth = req.body.dateOfBirth;
 			let phoneNumber = req.body.phoneNumber;
 			let emailAddr = req.body.emailAddr;
-			let typeOfUser = req.body.typeOfUser;
+			let typeOfUser;
 			let payPassword = req.body.paypassword;
 			let balance = 0;
+
+			if (req.body.typeOfUser==="Buy")
+				typeOfUser = 1;
+			else if (req.body.typeOfUser==="Sell")
+				typeOfUser=2;
+
 
 			if (username === null || password === null || realName === null || licenseNumber === null || dateOfBirth === null || phoneNumber === null || emailAddr === null || payPassword === null) {
 				callback(undefined, -1);
 			}
 			else {
 				let sqlinsert = "insert into user (username, password, realName, licenseNumber, dateOfBirth, phoneNumber, emailAddr, typeOfUser, payPassword, balance) values('" + username + "', '" + password + "', '" + realName + "', '" + licenseNumber + "', '" + dateOfBirth + "', '" + phoneNumber + "', '" + emailAddr + "', '" + typeOfUser + "', '" + payPassword + "', '" + balance + "') ";
-				ret = await conn.query(sqlinsert);
+				let ret = await conn.query(sqlinsert);
 				callback(undefined, ret[0].id);
 			}
 			conn.release();
@@ -52,6 +58,7 @@ module.exports = {
 		try{
 			const conn = await pool.getConnection();  
 			let id=req.session.token.uid;
+			console.log(id);
 			let sql = "select * from user where id = '"+ id +"'";
 			ret = await conn.query(sql);
 			callback(undefined,ret[0]);

@@ -190,7 +190,7 @@ CREATE TABLE `user` (
   `password` varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '密码',
   `realName` varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '姓名',
   `licenseNumber` varchar(18) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '证件号',
-  `dateOfBirth` char(8) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '出生日期',
+  `dateOfBirth` char(12) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '出生日期',
   `phoneNumber` varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '手机号',
   `emailAddr` varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '邮箱',
   `typeOfUser` int(11) DEFAULT NULL COMMENT '用户类型',
