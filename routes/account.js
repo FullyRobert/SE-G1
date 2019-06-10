@@ -13,14 +13,8 @@ router.get('/resetpwd', function(req, res){
 })
 
 router.get('/resetpwd2',function(req, res){
-
+    
     console.log("test");
-    var token = {
-        username:"hqh",
-        uid:"1",
-    };
-    req.session.token = token;
-
     res.render('resetpwd2');
 });
 
@@ -57,8 +51,8 @@ router.post('/queryOrder', function(req, res){
 router.get('/account.ejs', function(req, res) {
     //登陆校验
     if (!req.session.token) {
-		console.log("登录态过期，请重新登录！");
-        res.redirect('/');
+        res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
+        res.redirect('/login.ejs');
         return;
     }
     amodel.getinfo(req, function(err, ret) {

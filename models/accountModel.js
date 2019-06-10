@@ -40,7 +40,7 @@ module.exports = {
 				typeOfUser=2;
 
 
-			if (username === null || password === null || realName === null || licenseNumber === null || dateOfBirth === null || phoneNumber === null || emailAddr === null || payPassword === null) {
+			if (username == undefined || password === undefined || realName === undefined || licenseNumber === undefined || dateOfBirth === undefined || phoneNumber === undefined || emailAddr === undefined || payPassword === undefined) {
 				callback(undefined, -1);
 			}
 			else {
@@ -72,7 +72,6 @@ module.exports = {
 		try{
 			const conn = await pool.getConnection();  
 				let username = req.body.username;
-				let password = req.body.password;
 				let realName = req.body.realName;
 				let licenseNumber = req.body.licenseNumber;
 				let dateOfBirth = req.body.dateOfBirth;
@@ -80,9 +79,11 @@ module.exports = {
 				let emailAddr = req.body.emailAddr;
 				let payPassword = req.body.paypassword;
 				
-				if (username===null || password===null || realName===null|| licenseNumber===null|| dateOfBirth===null|| phoneNumber===null || emailAddr===null || payPassword===null)
+
+				if (username == undefined || realName===undefined|| licenseNumber===undefined|| dateOfBirth===undefined|| phoneNumber===undefined || emailAddr===undefined || payPassword===undefined)
 				{
 					callback(undefined,-1);
+					return;
 				}
 				else
 				{
