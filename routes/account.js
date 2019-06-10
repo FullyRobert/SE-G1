@@ -66,32 +66,42 @@ router.get('/account.ejs', function(req, res) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
         } else {
-            res.render('account',{realName: ret[0].realName, licenseNumber:ret[0].licenseNumber,dateOfBirth: ret[0].dateOfBirth, phoneNumber: ret[0].phoneNumber, emailAddr:ret[0].emailAddr});
+            res.render('account',
+                {
+                    username: ret[0].username,
+                    realName: ret[0].realName,
+                    licenseNumber: ret[0].licenseNumber,
+                    dateOfBirth: ret[0].dateOfBirth,
+                    phoneNumber: ret[0].phoneNumber,
+                    emailAddr: ret[0].emailAddr
+                });
         }
     });
 });
 
 router.post('/login',function(req, res) {
-    amodel.check_login(req, function(err, ret) {
+    console.log("POST received!===============================================");
+    amodel.check_login(req, function (err, ret) {
         if (err) {
-        	console.log(err);
-            res.send({status: -1}).end();   //服务器异常
+            console.log(err);
+            res.send({ status: -1 }).end();   //服务器异常
+            console.log("-1 sent =====================================================");
         } else {
             console.log(ret);
             var token = {
-                username:null,
-                uid:null,
+                username: null,
+                uid: null,
             };
 
-        	if (ret.length > 0) {
-                token.username=ret[0].username;
-                token.uid=ret[0].id;
-                req.session.token=token;
+            if (ret.length > 0) {
+                token.username = ret[0].username;
+                token.uid = ret[0].id;
+                req.session.token = token;
                 console.log(req.session.token);
-        		res.send({status: 1}).end();   //验证成功
+                res.send({ status: 1 }).end();   //验证成功
             } else {
-        		res.send({status: 0}).end();   //验证失败
-        	}
+                res.send({ status: 0 }).end();   //验证失败
+            }
         }
     });
 });

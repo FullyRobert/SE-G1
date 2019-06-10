@@ -145,7 +145,7 @@
 						</div>
 						<form class="form">
 							<div class="form-body">
-								<h4 class="form-section"><i class="icon-head"></i>姓名与联系方式</h4>
+								<h4 class="form-section"><i class="icon-head"></i><%= username %></h4>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -301,11 +301,11 @@
             }
             else if(data.status == 0)
             {
-              alert("Boom! You SB!");
+              alert("非法输入");
             }
             else if(data.status == -1)
             {
-              alert("Boom Boom! You big SB!");
+              alert("服务器错误");
             }
           }
         });
