@@ -41,7 +41,7 @@ module.exports = {
 			else typeOfUser=3;
 
 
-			if (username == undefined || password === undefined || realName === undefined || licenseNumber === undefined || dateOfBirth === undefined || phoneNumber === undefined || emailAddr === undefined || payPassword === undefined) {
+			if (username == null || password === undefined || realName === undefined || licenseNumber === undefined || dateOfBirth === undefined || phoneNumber === undefined || emailAddr === undefined || payPassword === undefined) {
 				callback(undefined, -1);
 			}
 			else {
@@ -72,7 +72,6 @@ module.exports = {
 	updateinfo: async function(req, callback) {
 		try{
 			const conn = await pool.getConnection();  
-				let username = req.body.username;
 				let realName = req.body.realName;
 				let licenseNumber = req.body.licenseNumber;
 				let dateOfBirth = req.body.dateOfBirth;
@@ -81,14 +80,14 @@ module.exports = {
 				let payPassword = req.body.paypassword;
 				
 
-				if (username == undefined || realName===undefined|| licenseNumber===undefined|| dateOfBirth===undefined|| phoneNumber===undefined || emailAddr===undefined || payPassword===undefined)
+				if (realName===undefined|| licenseNumber===undefined|| dateOfBirth===undefined|| phoneNumber===undefined || emailAddr===undefined || payPassword===undefined)
 				{
 					callback(undefined,-1);
 					return;
 				}
 				else
 				{
-					let sqlupdate = "update user set username = '"+ username +"',password = '"+ password +"',realName = '"+ realName+"',licenseNumber = '"+ licenseNumber+"',dateOfBirth = '"+ dateOfBirth+"',phoneNumber = '"+ phoneNumber  +"',emailAddr = '"+ emailAddr  +"',payPassword = '"+ payPassword  +"' where id = " + req.session.token.uid;
+					let sqlupdate = "update user set realName = '"+ realName+"',licenseNumber = '"+ licenseNumber+"',dateOfBirth = '"+ dateOfBirth+"',phoneNumber = '"+ phoneNumber  +"',emailAddr = '"+ emailAddr  +"',payPassword = '"+ payPassword  +"' where id = " + req.session.token.uid;
 					ret = await conn.query(sqlupdate);
 					callback(undefined,ret[0].id);
 				}
