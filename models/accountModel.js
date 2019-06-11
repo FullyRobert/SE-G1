@@ -38,6 +38,7 @@ module.exports = {
 				typeOfUser = 1;
 			else if (req.body.typeOfUser==="Sell")
 				typeOfUser=2;
+			else typeOfUser=3;
 
 
 			if (username == undefined || password === undefined || realName === undefined || licenseNumber === undefined || dateOfBirth === undefined || phoneNumber === undefined || emailAddr === undefined || payPassword === undefined) {

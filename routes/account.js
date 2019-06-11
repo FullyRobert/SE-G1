@@ -51,8 +51,8 @@ router.post('/queryOrder', function(req, res){
 router.get('/account.ejs', function(req, res) {
     //登陆校验
     if (!req.session.token) {
-        res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
         res.redirect('/login.ejs');
+        //res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
         return;
     }
     amodel.getinfo(req, function(err, ret) {
@@ -85,11 +85,13 @@ router.post('/login',function(req, res) {
             var token = {
                 username: null,
                 uid: null,
+                typeOfUser:null
             };
 
             if (ret.length > 0) {
                 token.username = ret[0].username;
                 token.uid = ret[0].id;
+                token.typeOfUser =ret[0].typeOfUser;
                 req.session.token = token;
                 console.log(req.session.token);
                 res.send({ status: 1 }).end();   //验证成功
