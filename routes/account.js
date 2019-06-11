@@ -144,6 +144,12 @@ router.post('/register', function(req, res) {
     });
 });
 
+router.post('/checkcardid', function(req,res) {
+    if(amodel.checkCard(req.body.cardid))
+        res.send({status:1}).end();
+    else res.send({status:0}).end();
+})
+
 router.post('/updateinfo', function(req, res) {
     amodel.updateinfo(req, function(err, ret) {
         if (err) {

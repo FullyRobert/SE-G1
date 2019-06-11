@@ -12,7 +12,7 @@ File Encoding         : 65001
 
 Date: 2019-06-06 10:36:01
 */
-
+USE account;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
