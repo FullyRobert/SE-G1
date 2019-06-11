@@ -14,6 +14,8 @@
     <link rel="apple-touch-icon" sizes="152x152" href="../app-assets/images/ico/apple-icon-152.png">
     <link rel="shortcut icon" type="image/x-icon" href="../app-assets/images/ico/favicon.ico">
     <link rel="shortcut icon" type="image/png" href="../app-assets/images/ico/favicon-32.png">
+    <script src="jquery/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -53,6 +55,12 @@
 			<div class="card-body collapse in">	
 				<div class="card-block">
 					<form class="form-horizontal form-simple" action="index.html" novalidate>
+              <fieldset class="form-group position-relative has-icon-left mb-1">
+                  <input type="email" class="form-control form-control-lg input-lg" id="user-name" placeholder="用户名" required>
+                  <div class="form-control-position">
+                      <i class="icon-head"></i>
+                  </div>
+                </fieldset>
 						<fieldset class="form-group position-relative has-icon-left mb-1">
 							<input type="email" class="form-control form-control-lg input-lg" id="user-email" placeholder="邮箱地址" required>
 							<div class="form-control-position">
@@ -66,15 +74,7 @@
 							    <i class="icon-key3"></i>
 							</div>
 						</fieldset>
-            <input type="button" id="submit" value="提交" onclick="changePassword()" class="btn btn-primary btn-lg btn-block" class="icon-unlock2">
-            <script>
-            function changePassword(){
-              if(document.getElementById("authen-code").value == "123456")
-              {
-                window.location.href='resetpwd2';
-              }
-            }
-            </script>
+            <input type="button" id="submit" value="提交" class="btn btn-primary btn-lg btn-block" class="icon-unlock2">
 					</form>
 				</div>
 				
@@ -108,3 +108,45 @@
     <!-- END PAGE LEVEL JS-->
   </body>
 </html>
+
+<script type="text/javascript">
+  $("#submit").click(function(){
+      let username = $("#user-name").val();
+      let emailAddress = $("#user-email").val();
+      let authenCode = $("#authen-code").val();
+      $.ajax({
+          dataType: "JSON",
+          data: {
+              username: username,
+              emailAddress: emailAddress,
+              authenCode: authenCode
+          },
+          url: "/resetpwd",
+          type: "POST",
+          success: function(data) {
+              if (data.status == 1) { // success
+                  window.location.href = '/resetpwd2';
+              } else if (data.status == 2) {  // no insert both username and emailadderss
+                  alert("请输入用户名和邮箱!");
+                  $("#user-name").val("");
+                  $("#user-email").val("");
+                  $("#authen-code").val("");
+              } else if (data.status == 3) {
+                  alert("验证码是123456!");  // authentication code is wrong
+                  $("#user-name").val("");
+                  $("#user-email").val("");
+                  $("#authen-code").val("");
+              }
+              else if (data.status ==4) {
+                  alert("验证错误!");  
+                  $("#user-name").val("");
+                  $("#user-email").val("");
+                  $("#authen-code").val("");
+              }
+          },
+          error: function(err) {
+              alert("请求失败!");
+          }
+      });
+  });
+</script>

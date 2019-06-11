@@ -12,9 +12,24 @@ router.get('/resetpwd', function(req, res){
     res.render('resetpwd');
 })
 
+router.post('/resetpwd', function(req, res){
+    pmodel.valiAuthencode(req, function(err, status){
+        if(err) {
+            console.log(err);
+            res.send({status: 4}).end();
+        } else {
+            if(status == 1) {
+                res.send({status: 1}).end();
+            } else if(status == 2) {
+                res.send({status: 2}).end();
+            } else if(status == 3) {
+                res.send({status: 3}).end();
+            }
+        }
+    });
+});
+
 router.get('/resetpwd2',function(req, res){
-    
-    console.log("test");
     res.render('resetpwd2');
 });
 
