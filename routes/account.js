@@ -73,13 +73,22 @@ router.get('/account.ejs', function(req, res) {
     });
 });
 
+router.post('/exit',function(req, res) {
+    try{
+        req.session.destroy();
+        res.send({ status: 1 }).end();   //退出登陆成功
+    }
+    catch (err) {
+        res.send({ status: 0 }).end();   //退出登陆失败
+    }
+
+});
+
 router.post('/login',function(req, res) {
-    console.log("POST received!===============================================");
     amodel.check_login(req, function (err, ret) {
         if (err) {
             console.log(err);
             res.send({ status: -1 }).end();   //服务器异常
-            console.log("-1 sent =====================================================");
         } else {
             console.log(ret);
             var token = {
