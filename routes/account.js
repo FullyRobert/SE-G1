@@ -191,9 +191,15 @@ router.get('/index.ejs', (req,res) =>
 });
 
 router.get('/admin.ejs', (req,res) =>
-	{ res.render('admin'); });
-router.get('/balance.ejs', (req,res) =>
-    { res.render('balance'); });
+    { res.render('admin'); });
+    
+router.get('/balance.ejs', (req, res) => {
+        console.log("123");
+        res.render('balance', {balance: req.query.balance});
+    });
+    
+router.get('/charge.ejs', (req,res) =>
+    { res.render('charge')});
     
 router.get('/change_passwd.ejs', (req,res) =>
 {   if (!req.session.token) {
