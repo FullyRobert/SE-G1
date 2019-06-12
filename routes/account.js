@@ -188,17 +188,26 @@ router.get('/index.ejs', (req,res) =>
     }
     else
         res.render('index');
- });
+});
+
 router.get('/admin.ejs', (req,res) =>
 	{ res.render('admin'); });
 router.get('/balance.ejs', (req,res) =>
-	{ res.render('balance'); });
+    { res.render('balance'); });
+    
 router.get('/change_passwd.ejs', (req,res) =>
-	{ res.render('change_passwd'); });
+{   if (!req.session.token) {
+    res.redirect('/login.ejs');
+    //res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
+    return;
+    }
+    else
+    res.render('resetpwd2'); 
+});
+
 router.get('/error.ejs', (req,res) =>
 	{ res.render('error'); });
-router.get('/index.ejs', (req,res) =>
-	{ res.render('index'); });
+
 router.get('/refund.ejs', (req,res) =>
 	{ res.render('refund'); });
 router.get('/login.ejs', (req,res) =>
