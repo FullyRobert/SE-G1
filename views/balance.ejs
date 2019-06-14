@@ -129,13 +129,12 @@
           <div class="card-body">
             <div class="earning-chart position-relative">
               <div class="chart-title position-absolute mt-2 ml-2">
-                <h1 class="display-4">￥123</h1>
+                <h1 class="display-4">￥<%= balance %></h1>
                 <span class="text-muted">余额</span>
               </div>
               <canvas id="earning-chart" class="height-450 block"></canvas>
               <div class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3">
-                <a href="charge.ejs" class="btn bg-cyan mr-1 white">充值 <i class="icon-stats-bars"></i></a> <span
-                  class="text-muted">通过<a href="#" class="primary darken-2">银行卡</a></span>
+                <a href="charge.ejs" class="btn bg-cyan mr-1 white">充值 <i class="icon-stats-bars"></i></a> <span class="text-muted">通过<a href="#" class="primary darken-2">银行卡</a></span>
               </div>
             </div>
           </div>
@@ -173,6 +172,8 @@
     <!-- END ROBUST JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="../app-assets/js/scripts/pages/dashboard-2.js" type="text/javascript"></script>
+    
+    
     <!-- END PAGE LEVEL JS-->
     <script type="text/javascript">
       $(document).ready(function () {

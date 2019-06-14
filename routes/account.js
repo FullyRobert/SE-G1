@@ -3,6 +3,8 @@ let router = express.Router();
 var ex = require('../models/exampleModel.js');
 var amodel = require('../models/accountModel.js');
 var pmodel = require('../models/passModel.js');
+var bamodel =require('../models/balance.js');
+
 
 router.get('/', function(req, res, next) {
 	res.render('login');
@@ -28,6 +30,10 @@ router.post('/resetpwd', function(req, res){
         }
     });
 });
+
+
+ 
+
 
 router.get('/resetpwd2',function(req, res){
     res.render('resetpwd2');
@@ -144,6 +150,7 @@ router.post('/register', function(req, res) {
     });
 });
 
+
 router.post('/checkcardid', function(req,res) {
     if(amodel.checkCard(req.body.cardid))
         res.send({status:1}).end();
@@ -194,13 +201,38 @@ router.get('/admin.ejs', (req,res) =>
     { res.render('admin'); });
     
 router.get('/balance.ejs', (req, res) => {
-        console.log("123");
-        res.render('balance', {balance: req.query.balance});
+       console.log("balance succeed");
+       bamodel.balance(req, function(err, ret) {
+        if (err) {
+        	console.log(err);
+            res.send({status: -1}).end();   //服务器异常
+        }
+        else{
+       res.render('balance',{balance : ret[0].balance});
+       console.log("123");
+        }
+     });})
+
+
+router.post('/charge', function(req, res) {
+    bamodel.updatebalance(req, function(err, ret){
     });
-    
+    });
+
 router.get('/charge.ejs', (req,res) =>
-    { res.render('charge')});
-    
+     { 
+     bamodel.balance(req, function(err, ret) {
+      if (err) {
+          console.log(err);
+          res.send({status: -1}).end();   //服务器异常
+      }
+      else{
+     res.render('charge',{balance : ret[0].balance, username:ret[0].username});
+     console.log("123");
+      }
+   }); });
+
+
 router.get('/change_passwd.ejs', (req,res) =>
 {   if (!req.session.token) {
     res.redirect('/login.ejs');
