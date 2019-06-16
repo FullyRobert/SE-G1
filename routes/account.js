@@ -3,7 +3,7 @@ let router = express.Router();
 var ex = require('../models/exampleModel.js');
 var amodel = require('../models/accountModel.js');
 //var pmodel = require('../models/passModel.js');
-var bamodel =require('../models/balance.js');
+
 
 
 router.get('/', function(req, res, next) {
@@ -198,7 +198,7 @@ router.get('/admin.ejs', (req,res) =>
     
 router.get('/balance.ejs', (req, res) => {
        console.log("balance succeed");
-       bamodel.balance(req, function(err, ret) {
+       amodel.balance(req, function(err, ret) {
         if (err) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
@@ -211,13 +211,13 @@ router.get('/balance.ejs', (req, res) => {
 
 
 router.post('/charge', function(req, res) {
-    bamodel.updatebalance(req, function(err, ret){
+    amodel.updatebalance(req, function(err, ret){
     });
     });
 
 router.get('/charge.ejs', (req,res) =>
      { 
-     bamodel.balance(req, function(err, ret) {
+     amodel.balance(req, function(err, ret) {
       if (err) {
           console.log(err);
           res.send({status: -1}).end();   //服务器异常
