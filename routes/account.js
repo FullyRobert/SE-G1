@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 var ex = require('../models/exampleModel.js');
 var amodel = require('../models/accountModel.js');
-var pmodel = require('../models/passModel.js');
+//var pmodel = require('../models/passModel.js');
 var bamodel =require('../models/balance.js');
 
 
@@ -15,7 +15,7 @@ router.get('/resetpwd', function(req, res){
 })
 
 router.post('/resetpwd', function(req, res){
-    pmodel.valiAuthencode(req, function(err, status){
+    amodel.valiAuthencode(req, function(err, status){
         if(err) {
             console.log(err);
             res.send({status: 4}).end();
@@ -31,16 +31,12 @@ router.post('/resetpwd', function(req, res){
     });
 });
 
-
- 
-
-
 router.get('/resetpwd2',function(req, res){
     res.render('resetpwd2');
 });
 
 router.post('/resetpwd2',function(req,res){
-    pmodel.changePasswd(req, function(err, status){
+    amodel.changePasswd(req, function(err, status){
         if(err){
             console.log(err);
             res.send({status: 3}).end();
@@ -58,7 +54,7 @@ router.post('/queryOrder', function(req, res){
 
     console.log("test");
 
-    pmodel.queryOrder(req, function(err, ret){
+    amodel.queryOrder(req, function(err, ret){
         if (err) {
             console.log(err);
             res.send({status: 0}).end();
@@ -241,6 +237,19 @@ router.get('/change_passwd.ejs', (req,res) =>
     }
     else
     res.render('resetpwd2'); 
+});
+
+router.post('/transaction_select', (req,res) =>
+{   console.log("test");
+    amodel.selectOrder(req, function(err, ret){
+        if (err) {
+            // console.log(err);
+            res.send({status: 0}).end();
+        } else {
+            // console.log(ret);
+            res.send({status: 1, orders: ret}).end();
+        }
+    });
 });
 
 router.get('/error.ejs', (req,res) =>

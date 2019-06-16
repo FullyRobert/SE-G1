@@ -291,6 +291,100 @@ module.exports = {
       return false;
     }
     return true;
-  }
+  },
   //检查号码是否符合规范，包括长度，类型
+  changePasswd: async function(req, callback){
+    try{
+        const conn = await pool.getConnection();
+        let firstPasswd = req.body.firstPasswd;
+        let secondPasswd = req.body.secondPasswd;
+        if(firstPasswd != secondPasswd){
+            console.log("firstPasswd is not equal to secondPasswd");
+            let status = 2;
+            callback(undefined, status);
+        } else {
+            if(!req.session.token) {
+                username = tempUsername;
+            } else {
+                username = req.session.token.username;
+            }
+            let sql = "update user set password = ? where username = ?";
+            let param = [firstPasswd, username];
+            let ret = await conn.query(sql, param);
+            //console.log(req.session.token);
+            let status = 1;
+            callback(undefined, status);
+        }
+        conn.release();
+    } catch(err) {
+        callback(err, undefined)
+    }
+ },
+
+ valiAuthencode: async function(req, callback){
+    try {
+        let username = req.body.username;
+        let emailAddress = req.body.emailAddress;
+        let authenCode = req.body.authenCode;
+        if(username == "" || emailAddress == "") {
+            let status = 2;
+            callback(undefined, status);
+        } else if(authenCode != "123456") {
+            let status = 3;
+            callback(undefined, status);
+        } else {
+            tempUsername = username;
+            let status = 1;
+            callback(undefined, status);
+        }
+    } catch(err) {
+        callback(err, undefined);
+    }
+ },
+
+ queryOrder: async function(req, callback){
+    try{
+        const conn = await pool.getConnection();
+        let sql = "select * from deal_record";
+        let ret = await conn.query(sql);
+        //console.log(ret[0]);
+
+        callback(undefined, ret[0]);
+        conn.release();
+    }catch(err){
+        callback(err, undefined)
+    }
+ },
+
+ selectOrder: async function(req, callback){
+    try{
+        const conn = await pool.getConnection();
+        let {start_time_date, end_time_date, start_time_year, end_time_year, sort_method, sort_type} = req.body;
+
+        let start_time = '\'' + start_time_year + "-" + start_time_date.substring(0,2) + "-" + start_time_date.substr(2,4) + '\'';
+        let end_time = '\'' + end_time_year + "-" + end_time_date.substring(0,2) + "-" + end_time_date.substr(2,4) + '\'';
+        /*console.log(start_time);
+        console.log(start_time.length);
+        console.log(end_time);
+        console.log(end_time.length);*/
+
+        let sql = "select * from deal_record where created_time between" + " " + start_time + " " + "and" + ' ' + end_time;
+        //console.log(sql);
+        switch (sort_method) {
+          case '0': sql += " order by order_id"; break;
+          case '1': sql += " order by created_time"; break;
+          case '2': sql += " order by amount"; break;
+        }
+          switch (sort_type) {
+          case '0': break;
+          case '1': sql += " desc"; break;
+        }
+        let ret = await conn.query(sql);
+        console.log(ret[0]);
+        callback(undefined, ret[0]);
+        conn.release(); 
+    }catch(err){
+        callback(err, undefined);
+    }
+  }
 };

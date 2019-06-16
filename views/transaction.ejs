@@ -118,36 +118,64 @@
     <div class="content-wrapper">
       <div class="content-header row">
         <div class="content-header-left col-md-6 col-xs-12 mb-1">
-          <ul class="nav nav-tabs nav-left" style="height: 95px;">
-            <li class="nav-item">
-              <a class="text-success nav-link active" id="baseVerticalLeft-tab1" aria-expanded="true"
-                aria-controls="tabVerticalLeft1" href="#tabVerticalLeft1" data-toggle="tab">全部订单</a>
-            </li>
-            <li class="nav-item hidden-xs">
-              <a class="text-success nav-link" id="baseVerticalLeft-tab1" aria-expanded="true"
-                aria-controls="tabVerticalLeft1" href="#tabVerticalLeft1" data-toggle="tab">待付款</a>
-            </li>
-            <li class="nav-item">
-              <a class="text-success nav-link" id="baseVerticalLeft-tab2" aria-expanded="false"
-                aria-controls="tabVerticalLeft2" href="#tabVerticalLeft2" data-toggle="tab">待发货</a>
-            </li>
-            <li class="nav-item">
-              <a class="text-success nav-link" id="baseVerticalLeft-tab3" aria-expanded="false"
-                aria-controls="tabVerticalLeft3" href="#tabVerticalLeft3" data-toggle="tab">待收货</a>
-            </li>
-            <li class="nav-item">
-              <a class="text-success nav-link" id="baseVerticalLeft-tab3" aria-expanded="false"
-                aria-controls="tabVerticalLeft3" href="#tabVerticalLeft3" data-toggle="tab">申请退款</a>
-            </li>
-            <li class="nav-item">
-              <a class="text-success nav-link" id="baseVerticalLeft-tab3" aria-expanded="false"
-                aria-controls="tabVerticalLeft3" href="#tabVerticalLeft3" data-toggle="tab">完成</a>
-            </li>
-            <li class="nav-item">
-              <a class="text-success nav-link" id="baseVerticalLeft-tab3" aria-expanded="false"
-                aria-controls="tabVerticalLeft3" href="#tabVerticalLeft3" data-toggle="tab">失败</a>
-            </li>
-          </ul>
+          <button id="select" class="btn btn-success btn-doc-header" type="button">筛选</button>
+        </div>
+
+        <div class="modal fade" id="select_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">筛选条件</h4>
+              </div>
+              <div class="modal-body form-horizontal">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">年份区间</label>
+                      <div class="col-sm-3" style="padding-left:0">
+                        <input type="text" class="form-control" name="start_time_year">
+                      </div>
+                      <label class="control-label col-sm-2" style="text-align:center;">~</label>
+                      <div class="col-sm-3" style="padding-left:0">
+                        <input type="text" class="form-control" name="end_time_year">
+                      </div>
+                      <label class="control-label"></label>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">日期区间</label>
+                      <div class="col-sm-3" style="padding-left:0">
+                        <input type="text" class="form-control" name="start_time_date">
+                      </div>
+                      <label class="control-label col-sm-2" style="text-align:center;">~</label>
+                      <div class="col-sm-3" style="padding-left:0">
+                        <input type="text" class="form-control" name="end_time_date">
+                      </div>
+                      <label class="control-label"></label>
+                  </div>
+                <div class="form-group">
+                          <label class="col-sm-2 control-label">排序方式</label>
+                            <div class="col-sm-3" style="padding-left:0">
+                    <select class="form-control" name="sort_method">
+                      <option value="0">订单编号</option>
+                      <option value="1">订单时间</option>
+                      <option value="2">订单金额</option>
+                    </select>
+                            </div>
+                            <div class="col-sm-3" style="padding-left:0">
+                              <select class="form-control" name="sort_type">
+                      <option value="0">升序</option>
+                      <option value="1">降序</option>
+                    </select>
+                      </div>
+                          <label class="control-label"></label>
+                      </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-success"  onclick="refresh()">重置</button>
+                <button type="button" class="btn btn-primary" onclick="select()">筛选</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal -->
         </div>
 
       </div>
@@ -193,17 +221,82 @@
         }
       });
     });
+    $('#select').click(function(){
+			$('#select_model').modal('show');
+    });
+    function select() {
+    		let error = "";
+    		let start_time_year = $("input[name='start_time_year']").val();
+    		let end_time_year = $("input[name='end_time_year']").val();
+			  let start_time_date = $("input[name='start_time_date']").val();
+        let end_time_date = $("input[name='end_time_date']").val();
+        let sort_method = $("select[name='sort_method']").val();
+			  let sort_type = $("select[name='sort_type']").val(); 
+    		if (start_time_year!="" && (!testint(start_time_year) || start_time_year.length != 4)) error = "起始年份不合法,正确输入为四位数字表示年份";
+    		else if (end_time_year!="" && (!testint(end_time_year) || end_time_year.length != 4)) error = "终止年份不合法,正确输入为四位数字表示年份";
+    		else if (start_time_date!="" && (!testint(start_time_date) || start_time_date.length != 4)) error = "起始日期不合法,正确输入为四位数字表示月份日";
+    		else if (end_time_date!="" && (!testint(end_time_date) || end_time_date.length !=4)) error = "终止日期不合法,正确输入为四位数字表示月份日期";
+    		if (error) {
+    			alert(error);
+    			return;
+    		} else {
+    			if (start_time_date == "") start_time = 0;
+ 	 			  if (end_time_date == "") end_time = 9999;
+ 	 			  if (start_time_year == "") start_price = 0;
+ 	 			  if (end_time_year == "") end_price = 9999;
+    			$.ajax({
+		            dataType: "JSON",
+		            data: {
+                    start_time_date:start_time_date,
+                    end_time_date:end_time_date,
+                    start_time_year:start_time_year,
+                    end_time_year:end_time_year,
+						        sort_method: sort_method,
+						        sort_type: sort_type
+		            },
+		            url: "/transaction_select",
+		            type: "POST",
+		            success: function(data) {
+                    refresh();
+		                $("#order_table tbody").empty();
+		                for (let i = 0; i < data.orders.length; i++) {
+                      //console.log(data.orders[i]);
+                      show_order(data.orders[i]);
+                    }
+                    // refresh();
+		                $('#select_model').modal('hide');
+		            },
+		            error: function(err) {
+		                alert("请求失败!");
+		            }
+        		});
+    		}
+    	}
     function show_order(order) {
+      let time = order.created_time;
+      time = time.substring(0, 10);
       $("#order_table tbody").append(
         "<tr>\n" +
         "<td class=\"col-lg-2\">" + order.order_id + "</td>\n" +
-        "<td class=\"col-lg-2\">" + order.created_time + "</td>\n" +
+        "<td class=\"col-lg-2\">" + time + "</td>\n" +
         "<td class=\"col-lg-2\">" + order.information + "</td>\n" +
         "<td class=\"col-lg-2\">" + order.amount + "</td>\n" +
         "<td class=\"col-lg-2\">" + order.from_id + "</td>\n" +
         "<td class=\"col-lg-2\">" + order.to_id + "</td>\n"
       );
     }
+    function refresh(){
+    		$("input[name='start_time_year']").val("");
+    		$("input[name='end_time_year']").val("");
+    		$("input[name='start_time_date']").val("");
+    		$("input[name='end_time_date']").val("");
+		  	$("select[name='sort_method']").val(0);
+			  $("select[name='sort_type']").val(0);			
+		}
+		function testint(value){  // 正则表达式判断是否是正整数
+		    const reg = /^[0-9]+$/;
+		    return reg.test(value);
+		}
   </script>
 
   <!-- <footer class="footer footer-static footer-light navbar-border">
