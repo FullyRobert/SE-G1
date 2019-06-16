@@ -253,7 +253,7 @@ ul.ui-choose>li.selected {
 	z-index: 3;
 	border-color: #27b0d6;
 	color: #27b0d6;
-	background: transparent url("../images/success1.png") no-repeat right bottom;
+	background: transparent url("../../images/success1.png") no-repeat right bottom;
 }
 
 ul.ui-choose>li.disabled {
