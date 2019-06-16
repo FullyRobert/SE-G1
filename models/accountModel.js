@@ -363,13 +363,13 @@ module.exports = {
 
         let start_time = '\'' + start_time_year + "-" + start_time_date.substring(0,2) + "-" + start_time_date.substr(2,4) + '\'';
         let end_time = '\'' + end_time_year + "-" + end_time_date.substring(0,2) + "-" + end_time_date.substr(2,4) + '\'';
-        /*console.log(start_time);
+        console.log(start_time);
         console.log(start_time.length);
         console.log(end_time);
-        console.log(end_time.length);*/
+        console.log(end_time.length);
 
         let sql = "select * from deal_record where created_time between" + " " + start_time + " " + "and" + ' ' + end_time;
-        //console.log(sql);
+        console.log(sql);
         switch (sort_method) {
           case '0': sql += " order by order_id"; break;
           case '1': sql += " order by created_time"; break;
