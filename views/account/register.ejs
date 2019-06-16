@@ -93,7 +93,7 @@
     <div class="main-menu-content menu-accordion">
       <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
         <li class=" nav-item"><a href="index.ejs"><i class="icon-home3"></i><span data-i18n="nav.dash.main"
-                                                                                  class="menu-title">我的账户</span></a>
+              class="menu-title">我的账户</span></a>
           <ul class="menu-content">
             <li class="active"><a href="account.ejs" data-i18n="nav.dash.main" class="menu-item">修改信息</a>
             </li>
@@ -110,7 +110,7 @@
               data-i18n="" class="menu-title">在线预定</span></a>
         </li>
         <li class=" nav-item"><a href="transaction.ejs"><i class="icon-folder3"></i><span data-i18n=""
-                                                                                          class="menu-title">我的订单</span></a>
+              class="menu-title">我的订单</span></a>
         </li>
       </ul>
     </div>
@@ -301,54 +301,48 @@
       let h = $("#dateOfBirth").val();
       let i = $("[name='typeOfUserRadio'");
       i = i[0].checked ? i[0].value :
-          i[1].checked ? i[1].value :
+        i[1].checked ? i[1].value :
           i[2].checked ? i[2].value : undefined;
 
-      if(a.length>15)
-      {
+      if (a.length > 15) {
         alert("用户名过长");
-        return ;
+        return;
       }
 
-      if(b.length>30 || c.length>30)
-      {
+      if (b.length > 30 || c.length > 30) {
         alert("登录密码或支付密码过长");
-        return ;
+        return;
       }
 
-      if(! /^[a-zA-Z0-9_]+?@[a-zA-Z0-9_]+?(\.[a-zA-Z0-9_]+?)+$/.test(d))
-      {
+      if (! /^[a-zA-Z0-9_]+?@[a-zA-Z0-9_]+?(\.[a-zA-Z0-9_]+?)+$/.test(d)) {
         alert("邮箱地址不合法");
-        return ;
+        return;
       }
 
-      if(e[0]!='1' || e.length!=11)
-      {
+      if (e[0] != '1' || e.length != 11) {
         alert("手机号不合法");
-        return ;
+        return;
       }
 
-      if(h.substr(0,4)+h.substr(5,2)+h.substr(8,2)!=g.substr(6,8))
-      {
+      if (h.substr(0, 4) + h.substr(5, 2) + h.substr(8, 2) != g.substr(6, 8)) {
         alert("出生日期与证件不符");
-        return ;
+        return;
       }
 
-      var tempres=0;
+      var tempres = 0;
       $.ajax({
         dataType: "JSON",
-        data: { cardid:g },
+        data: { cardid: g },
         url: "/account/checkcardid",
         type: "POST",
         async: false,
         success: function (data) {
-          tempres=data.status;
+          tempres = data.status;
         }
       });
-      if(!tempres)
-      {
+      if (!tempres) {
         alert("证件号码不合法");
-        return ;
+        return;
       }
 
       $.ajax({
