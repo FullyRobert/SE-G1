@@ -335,7 +335,7 @@
       $.ajax({
         dataType: "JSON",
         data: { cardid:g },
-        url: "/checkcardid",
+        url: "/account/checkcardid",
         type: "POST",
         async: false,
         success: function (data) {
@@ -361,12 +361,12 @@
           dateOfBirth: h,
           typeOfUser: i
         },
-        url: "/register",
+        url: "/account/register",
         type: "POST",
         success: function (data) {
           if (data.status == 1) {
             alert("注册成功");
-            window.location.href = "login.ejs";
+            window.location.href = "/account/login.ejs";
           }
           else if (data.status == 0) {
             alert("您填写的个人信息不完整");
@@ -392,12 +392,12 @@
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();
-            window.location.href = "login.ejs";
+            window.location.href = "/account/login.ejs";
           }
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "login.ejs";
+        window.location.href = "/account/login.ejs";
     });
   </script>
 </body>

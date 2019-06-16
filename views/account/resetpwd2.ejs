@@ -110,12 +110,12 @@
               firstPasswd: firstPasswd,
               secondPasswd: secondPasswd
           },
-          url: "/resetpwd2",
+          url: "/account/resetpwd2",
           type: "POST",
           success: function(data) {
               if (data.status == 1) {
                   alert("修改成功!");
-                  window.location.href = '/index.ejs';
+                  window.location.href = '/account/index.ejs';
               } else if (data.status == 2) {
                   alert("输入密码不一致!");
                   $("#first-passwd").val("");

@@ -121,11 +121,11 @@
               emailAddress: emailAddress,
               authenCode: authenCode
           },
-          url: "/resetpwd",
+          url: "/account/resetpwd",
           type: "POST",
           success: function(data) {
               if (data.status == 1) { // success
-                  window.location.href = '/resetpwd2';
+                  window.location.href = '/account/resetpwd2';
               } else if (data.status == 2) {  // no insert both username and emailadderss
                   alert("请输入用户名和邮箱!");
                   $("#user-name").val("");

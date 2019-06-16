@@ -314,12 +314,12 @@
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();
-            window.location.href="login.ejs";
+            window.location.href="/account/login.ejs";
           }
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "login.ejs";
+        window.location.href = "/account/login.ejs";
     });
     $("#submit").click(function () {
       let d = $("#emailAddr").val();
@@ -344,7 +344,7 @@
       $.ajax({
         dataType: "JSON",
         data: { cardid:g },
-        url: "/checkcardid",
+        url: "/account/checkcardid",
         type: "POST",
         async: false,
         success: function (data) {
@@ -366,11 +366,11 @@
           licenseNumber: g,
           dateOfBirth: h,
         },
-        url: "/updateinfo",
+        url: "/account/updateinfo",
         type: "POST",
         success: function (data) {
           if (data.status == 1) {
-            window.location.href = "account.ejs";
+            window.location.href = "/account/account.ejs";
             alert("修改成功");
           }
           else if (data.status == 0) {

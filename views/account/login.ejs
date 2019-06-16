@@ -223,7 +223,7 @@
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "login.ejs";
+        window.location.href = "/account/login.ejs";
     });
     $("#submit-btn").click(function () {
       let username = $("#user-name").val();
@@ -234,7 +234,7 @@
           username: username,
           password: password
         },
-        url: "account/login",
+        url: "/account/login",
         type: "POST",
         success: function (data) {
           if (data.status == 1) {
@@ -277,7 +277,7 @@
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "login.ejs";
+        window.location.href = "/account/login.ejs";
     });
   </script>
 </body>
