@@ -4,10 +4,11 @@ let mysql = require('mysql');
 
 // set database
 let con = mysql.createConnection({
-    host: "localhost", //主机 默认为localhost
-    user: "root",
-    password: "1.048596",
-    database: "onlinePay" //数据库名
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: '',
+    port: '3306'
 });
 
 con.connect(err=>{

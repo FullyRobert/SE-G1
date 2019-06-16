@@ -397,76 +397,26 @@ module.exports = {
         sort_type
       } = req.body;
 
-      let start_time = '\'' + start_time_year + "-" + start_time_date.substring(0, 2) + "-" + start_time_date.substr(2, 4) + '\'';
-      let end_time = '\'' + end_time_year + "-" + end_time_date.substring(0, 2) + "-" + end_time_date.substr(2, 4) + '\'';
-      /*console.log(start_time);
-      console.log(start_time.length);
-      console.log(end_time);
-      console.log(end_time.length);*/
+        let start_time = '\'' + start_time_year + "-" + start_time_date.substring(0,2) + "-" + start_time_date.substr(2,4) + '\'';
+        let end_time = '\'' + end_time_year + "-" + end_time_date.substring(0,2) + "-" + end_time_date.substr(2,4) + '\'';
 
-      let sql = "select * from deal_record where created_time between" + " " + start_time + " " + "and" + ' ' + end_time;
-      //console.log(sql);
-      switch (sort_method) {
-        case '0':
-          sql += " order by order_id";
-          break;
-        case '1':
-          sql += " order by created_time";
-          break;
-        case '2':
-          sql += " order by amount";
-          break;
-      }
-      switch (sort_type) {
-        case '0':
-          break;
-        case '1':
-          sql += " desc";
-          break;
-      }
-      let ret = await conn.query(sql);
-      console.log(ret[0]);
-      callback(undefined, ret[0]);
-      conn.release();
-    } catch (err) {
-      callback(err, undefined);
-    }
-  },
-  /*
-   * @功能: 查询余额
-   * @作者: 刘长硕
-   */
-  balance: async function (req, callback) {
-    try {
-      const conn = await pool.getConnection();
-      let id = req.session.token.uid;
-      let balance = "select balance,username from user where id = '" + id + "'";
-      ret = await conn.query(balance);
-      callback(undefined, ret[0]);
-      conn.release();
-    } catch (err) {
-      callback(err, undefined);
-    }
-  },
+        let sql = "select * from deal_record where created_time between" + " " + start_time + " " + "and" + ' ' + end_time;
 
-  updatebalance: async function (req, callback) {
-    try {
-      const conn = await pool.getConnection();
-      let sid = req.session.token.uid;
-      let balance = req.body.balance;
-      let charge = req.body.charge;
-      let username = req.body.username;
-      let newbalance = parseInt(balance) + parseInt(charge);
-      newbalance = parseInt(newbalance);
-      ret = 0;
-      let a = "update user set balance = " + newbalance + " where id ='" + sid + "'";
-      ret = await conn.query(a);
-      callback(undefined, ret[0]);
+        switch (sort_method) {
+          case '0': sql += " order by order_id"; break;
+          case '1': sql += " order by created_time"; break;
+          case '2': sql += " order by amount"; break;
+        }
+          switch (sort_type) {
+          case '0': break;
+          case '1': sql += " desc"; break;
+        }
+        let ret = await conn.query(sql);
 
-      conn.release();
-      callback(undefined, ret[0]);
-    } catch (err) {
-      callback(err, undefined);
+        callback(undefined, ret[0]);
+        conn.release(); 
+    }catch(err){
+        callback(err, undefined);
     }
   }
 };
