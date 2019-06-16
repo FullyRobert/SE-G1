@@ -209,7 +209,7 @@
     $(function () {
       $.ajax({
         dataType: "JSON",
-        url: "/queryOrder",
+        url: "/account/queryOrder",
         type: "POST",
         success: function (data) {
           $("#order_table tbody").empty();
@@ -254,7 +254,7 @@
 						        sort_method: sort_method,
 						        sort_type: sort_type
 		            },
-		            url: "/transaction_select",
+		            url: "/account/transaction_select",
 		            type: "POST",
 		            success: function(data) {
                     refresh();
