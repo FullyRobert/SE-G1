@@ -234,13 +234,13 @@
           username: username,
           password: password
         },
-        url: "/login",
+        url: "account/login",
         type: "POST",
         success: function (data) {
           if (data.status == 1) {
             alert("登陆成功");
             sessionStorage.setItem('loggedIn', true);
-            window.location.href = "index.ejs";
+            window.location.href = "/account/index.ejs";
           }
           else if (data.status == 0) {
             alert("请检查您的账号与密码是否匹配");
