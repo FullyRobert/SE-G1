@@ -202,21 +202,21 @@
 
                     <div class="form-group">
                       <label>用户类型</label>
-                      <div class="input-group">
+                      <div class="input-group" id="typeOfUser">
                         <label class="display-inline-block custom-control custom-radio ml-1">
-                          <input type="radio" id="typeOfUser" name="customer1" value="Buy" checked
+                          <input type="radio" name="typeOfUserRadio" name="customer1" value="Buy" checked
                             class="custom-control-input">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description ml-0">我要买东西</span>
                         </label>
                         <label class="display-inline-block custom-control custom-radio">
-                          <input type="radio" id="typeOfUser" name="customer1" value="Sell"
+                          <input type="radio" name="typeOfUserRadio" name="customer1" value="Sell"
                             class="custom-control-input">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description ml-0">我要卖东西</span>
                         </label>
                         <label class="display-inline-block custom-control custom-radio">
-                          <input type="radio" id="typeOfUser" name="customer1" value="Admin"
+                          <input type="radio" name="typeOfUserRadio" name="customer1" value="Admin"
                             class="custom-control-input">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description ml-0">我要成为管理员</span>
@@ -299,7 +299,10 @@
       let f = $("#realName").val();
       let g = $("#licenseNumber").val();
       let h = $("#dateOfBirth").val();
-      let i = $("#typeOfUser").val();
+      let i = $("[name='typeOfUserRadio'");
+      i = i[0].checked ? i[0].value :
+          i[1].checked ? i[1].value :
+          i[2].checked ? i[2].value : undefined;
 
       if(a.length>15)
       {
