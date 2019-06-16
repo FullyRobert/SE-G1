@@ -228,7 +228,7 @@
     })
     $("#login-btn").click(function () {
       if (sessionStorage.getItem('loggedIn'))
-        $.post("/exit", function (data) {
+        $.post("/account/exit", function (data) {
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();

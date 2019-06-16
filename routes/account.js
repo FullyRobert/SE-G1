@@ -7,7 +7,7 @@ var amodel = require('../models/accountModel.js');
 
 
 router.get('/', function(req, res, next) {
-	res.render('account/login');
+    res.redirect('/account/login.ejs');
 });
 
 router.get('/resetpwd', function(req, res){
@@ -77,7 +77,7 @@ router.get('/account.ejs', function(req, res) {
         	console.log(err);
             res.send({status: -1}).end();   //服务器异常
         } else {
-            res.render('account',
+            res.render('account/account',
                 {
                     username: ret[0].username,
                     realName: ret[0].realName,
@@ -195,6 +195,12 @@ router.get('/index.ejs', (req,res) =>
 
     
 router.get('/balance.ejs', (req, res) => {
+        if (!req.session.token) {
+    res.redirect('/account/login.ejs');
+    //res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
+    return;
+    }
+    else{
        console.log("balance succeed");
        amodel.balance(req, function(err, ret) {
         if (err) {
@@ -205,7 +211,8 @@ router.get('/balance.ejs', (req, res) => {
        res.render('account/balance',{balance : ret[0].balance});
        console.log("123");
         }
-     });})
+     });}
+})
 
 
 router.post('/charge', function(req, res) {
@@ -259,7 +266,13 @@ router.get('/refund.ejs', (req,res) =>
 router.get('/login.ejs', (req,res) =>
 	{ res.render('account/login'); });
 router.get('/transaction.ejs', (req,res) =>
-	{ res.render('account/transaction'); });
+	{    if (!req.session.token) {
+        res.redirect('/account/login.ejs');
+        //res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
+        return;
+        }
+        else
+         res.render('account/transaction'); });
 router.get('/register.ejs', (req,res) =>
 	{ res.render('account/register'); });
 

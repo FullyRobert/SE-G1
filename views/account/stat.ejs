@@ -418,16 +418,16 @@
     })
     $("#login-btn").click(function () {
       if (sessionStorage.getItem('loggedIn'))
-        $.post("/exit", function (data) {
+        $.post("/account/exit", function (data) {
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();
-            window.location.href = "login.ejs";
+            window.location.href = "/account/login.ejs";
           }
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "login.ejs";
+        window.location.href = "/account/login.ejs";
     });
   </script>
 </body>

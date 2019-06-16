@@ -111,7 +111,7 @@
         <li class=" nav-item"><a href="documentation-introduction.ejs"><i class="icon-android-menu"></i><span
               data-i18n="" class="menu-title">在线预定</span></a>
         </li>
-        <li class=" nav-item"><a href="transaction.ejs"><i class="icon-folder3"></i><span data-i18n=""
+        <li class=" nav-item"><a href="./transaction.ejs"><i class="icon-folder3"></i><span data-i18n=""
                                                                                           class="menu-title">我的订单</span></a>
         </li>
       </ul>
@@ -213,11 +213,11 @@
     })
     $("#login-btn").click(function () {
       if (sessionStorage.getItem('loggedIn'))
-        $.post("/exit", function (data) {
+        $.post("/account/exit", function (data) {
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();
-            window.location.href = "login.ejs";
+            window.location.href = "/account/login.ejs";
           }
           if (data.status == 0) alert("登出失败");
         });
