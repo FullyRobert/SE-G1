@@ -17,8 +17,8 @@
   <link rel="apple-touch-icon" sizes="152x152" href="../app-assets/images/ico/apple-icon-152.png">
   <link rel="shortcut icon" type="image/x-icon" href="../app-assets/images/ico/favicon.ico">
   <link rel="shortcut icon" type="image/png" href="../app-assets/images/ico/favicon-32.png">
-  <script src="jquery/jquery.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="../jquery/jquery.js"></script>
+  <script src="../bootstrap/js/bootstrap.min.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-touch-fullscreen" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -103,7 +103,7 @@
         <li class=" nav-item"><a href="documentation-introduction.ejs"><i class="icon-android-menu"></i><span
               data-i18n="" class="menu-title">在线预定</span></a>
         </li>
-        <li class="active"><a href="documentation-folder-structure.ejs"><i class="icon-folder3"></i><span data-i18n=""
+        <li class="active"><a href="./transaction.ejs"><i class="icon-folder3"></i><span data-i18n=""
               class="menu-title">我的订单</span></a>
         </li>
       </ul>
@@ -260,10 +260,8 @@
                     refresh();
 		                $("#order_table tbody").empty();
 		                for (let i = 0; i < data.orders.length; i++) {
-                      //console.log(data.orders[i]);
                       show_order(data.orders[i]);
                     }
-                    // refresh();
 		                $('#select_model').modal('hide');
 		            },
 		            error: function(err) {
