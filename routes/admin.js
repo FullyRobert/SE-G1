@@ -17,6 +17,15 @@ con.connect(err=>{
 });
 
 router.get('/', function(req, res, next) {
+    if(!req.session.token){
+        res.redirect('../account');
+        console.log('not login');
+    }
+    if(req.session.token.typeOfUser != 3){
+        res.redirect('../account');
+        console.log('not admin');
+    }
+
     let data = "";
     let user = req.query.user;
     let filter = "";
@@ -28,21 +37,37 @@ router.get('/', function(req, res, next) {
             console.log(err);
         }
         var data = rows;
-        res.render('admin', {data: data, user: user });
+        res.render('account/admin', {data: data, user: user });
     });
 });
 
 router.get('/stat', (req, res)=>{
+    if(!req.session.token){
+        res.redirect('../account');
+        console.log('not login');
+    }
+    if(req.session.token.typeOfUser != 3){
+        res.redirect('../account');
+        console.log('not admin');
+    }
     con.query('SELECT COUNT(id) AS USERNUM FROM user',' ',(err, row)=>{
         if(err){
             con.log(err);
         }
-        res.render('stat', {userNum:row[0].USERNUM});
+        res.render('account/stat', {userNum:row[0].USERNUM});
     });
 
 });
 
 router.get('/userReset', (req, res, next)=>{
+    if(!req.session.token){
+        res.redirect('../account');
+        console.log('not login');
+    }
+    if(req.session.token.typeOfUser != 3){
+        res.redirect('../account');
+        console.log('not admin');
+    }
     let id = req.query.id;
     console.log(id);
     let pwd = '12345678';
@@ -51,7 +76,7 @@ router.get('/userReset', (req, res, next)=>{
             console.log(err);
         }
         else{
-            res.redirect('/admin');
+            res.redirect('/account/admin');
         }
     });
 

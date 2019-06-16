@@ -98,7 +98,7 @@
     <div class="main-menu-content menu-accordion">
       <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
         <li class=" nav-item"><a href="index.ejs"><i class="icon-home3"></i><span data-i18n=""
-              class="menu-title">我的账户</span></a>
+                                                                                  class="menu-title">我的账户</span></a>
         </li>
         <li class=" nav-item"><a href="documentation-introduction.ejs"><i class="icon-android-menu"></i><span
               data-i18n="" class="menu-title">在线预定</span></a>
@@ -337,12 +337,12 @@
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();
-            window.location.href = "./login.ejs";
+            window.location.href = "login.ejs";
           }
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "./login.ejs";
+        window.location.href = "login.ejs";
     });
   </script>
 </body>

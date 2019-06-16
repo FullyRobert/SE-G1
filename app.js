@@ -25,8 +25,8 @@ app.use(session({secret: 'recommand 128 bytes random string', // 建议使用 12
 }));  //这些是写在app.js里面的    
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', accountRouter);   //账户管理路由
-app.use('/admin', adminRouter);   //管理路由
+app.use('/account', accountRouter);   //账户管理路由
+app.use('/account/admin', adminRouter);   //管理路由
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

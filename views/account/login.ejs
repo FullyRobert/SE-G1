@@ -57,7 +57,7 @@
                   <p>Biscuit macaroon tootsie roll croissant. Dessert candy canes halvah cookie liquorice. Candy canes muffin gummies jujubes brownie. Pie cake pie pastry sugar plum jelly apple pie cotton candy.</p></i>
                 </div></a></li> -->
           <!-- <li class="nav-item"><a href="index.ejs" class="navbar-brand nav-link"><img alt="branding logo" src="../app-assets/images/logo/robust-logo-light.png" data-expand="../app-assets/images/logo/robust-logo-light.png" data-collapse="../app-assets/images/logo/robust-logo-small.png" class="brand-logo"></a></li> -->
-          <li class="nav-item"><a href="index.ejs" class="navbar-brand nav-link">在线支付系统</a></li>
+          <li class="nav-item"><a href="/account/index.ejs" class="navbar-brand nav-link">在线支付系统</a></li>
           <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile"
               class="nav-link open-navbar-container"><i class="icon-ellipsis pe-2x fa-rotate-90"></i></a></li>
         </ul>
@@ -76,7 +76,7 @@
                 <i class="icon-bag3"></i>
                 登陆
               </button></li>
-            <li class="nav-item"><a href="./account.ejs" target="_blank" class="btn btn-success btn-doc-header"><i
+            <li class="nav-item"><a href="/account/account.ejs" target="_blank" class="btn btn-success btn-doc-header"><i
                   class="icon-bag3"></i> 我的</a></li>
           </ul>
         </div>
@@ -95,24 +95,24 @@
     <div class="main-menu-content menu-accordion">
       <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
         <li class=" nav-item"><a href="index.ejs"><i class="icon-home3"></i><span data-i18n="nav.dash.main"
-              class="menu-title">我的账户</span></a>
+                                                                                  class="menu-title">我的账户</span></a>
           <ul class="menu-content">
-            <li><a href="account.ejs" data-i18n="nav.dash.main" class="menu-item">修改信息</a>
+            <li><a href="/account/account.ejs" data-i18n="nav.dash.main" class="menu-item">修改信息</a>
             </li>
-            <li class="active"><a href="change_passwd.ejs" data-i18n="nav.dash.main" class="menu-item">密码与认证</a>
+            <li><a href="/account/change_passwd.ejs" data-i18n="nav.dash.main" class="menu-item">密码找回</a>
             </li>
-            <li><a href="balance.ejs" data-i18n="nav.dash.main" class="menu-item">余额与充值</a>
+            <li><a href="/account/balance.ejs" data-i18n="nav.dash.main" class="menu-item">余额与充值</a>
             </li>
-            <li><a href="admin.ejs" data-i18n="nav.dash.main" class="menu-item">管理后台</a>
+            <li><a href="/account/admin.ejs" data-i18n="nav.dash.main" class="menu-item">管理后台</a>
             </li>
           </ul>
         </li>
         </li>
-        <li class=" nav-item"><a href="documentation-/introduction.ejs"><i class="icon-android-menu"></i><span
+        <li class=" nav-item"><a href="documentation-introduction.ejs"><i class="icon-android-menu"></i><span
               data-i18n="" class="menu-title">在线预定</span></a>
         </li>
         <li class=" nav-item"><a href="transaction.ejs"><i class="icon-folder3"></i><span data-i18n=""
-              class="menu-title">我的订单</span></a>
+                                                                                          class="menu-title">我的订单</span></a>
         </li>
       </ul>
     </div>
@@ -122,138 +122,68 @@
   </div>
   <!-- / main menu-->
 
+
   <div class="app-content content container-fluid">
     <div class="content-wrapper">
       <div class="content-header row">
-        <div class="content-header-left col-md-6 col-xs-12 mb-1">
-          <h2 class="content-header-title">修改信息</h2>
-        </div>
-        <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-          <div class="breadcrumb-wrapper col-xs-12">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.ejs">主页</a>
-              </li>
-            </ol>
+
+      </div>
+
+      <div class="content-body" style="padding-left:15vw;">
+        <!-- Overview -->
+        <div class="card border-grey border-lighten-3 m-0" style="width:50vw;margin-left:20vw">
+          <div class="card-header no-border">
+            <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>登陆</span></h6>
+          </div>
+          <div class="card-body collapse in">
+            <div class="card-block">
+              <form class="form-horizontal form-simple" novalidate="">
+                <fieldset class="form-group position-relative has-icon-left mb-0">
+                  <input class="form-control form-control-lg input-lg" id="user-name" required="" type="text"
+                    placeholder="Your Username">
+                  <div class="form-control-position">
+                    <i class="icon-head"></i>
+                  </div>
+                </fieldset>
+                <fieldset class="form-group position-relative has-icon-left">
+                  <input class="form-control form-control-lg input-lg" id="user-password" required="" type="password"
+                    placeholder="Enter Password">
+                  <div class="form-control-position">
+                    <i class="icon-key3"></i>
+                  </div>
+                </fieldset>
+                <fieldset class="form-group row">
+                  <div class="col-md-6 col-xs-12 text-xs-center text-md-left">
+                    <fieldset>
+                      <input class="chk-remember" id="remember-me" type="checkbox">
+                      <label for="remember-me"> 记住密码</label>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-6 col-xs-12 text-xs-center text-md-right"><a class="text-success card-link"
+                      href="resetpwd">忘记密码?</a></div>
+                </fieldset>
+                <button class="btn btn-success btn-doc-header btn-lg btn-block" id="submit-btn" type="button"><i
+                    class="icon-unlock2"></i>
+                  登陆</button>
+              </form>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div>
+              <p class="float-sm-right text-xs-center m-0">没有账户? <a class=" text-success card-link"
+                  href="register.ejs">注册</a></p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="content-body">
-        <!-- Basic form layout section start -->
-        <section id="basic-form-layouts">
-          <div class="row match-height">
-
-            <div class="row match-height">
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-header">
-                    <h4 class="card-title" id="basic-layout-tooltip">修改认证方式</h4>
-                    <a href="resetpwd2">
-                      <button type="submit" class="btn btn-warning">重置密码</button>
-                    </a>
-                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
-                    <div class="heading-elements">
-                      <ul class="list-inline mb-0">
-                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
-                        <li><a data-action="reload"><i class="icon-reload"></i></a></li>
-                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
-                        <li><a data-action="close"><i class="icon-cross2"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="card-body collapse in">
-                    <div class="card-block">
-
-                      <div class="card-text">
-                        <p>您可以在此模块中进行修改密码，修改密保问题等操作。</p>
-                      </div>
-
-                      <form class="form">
-                        <div class="form-body">
-
-                          <h4 class="form-section"><i class="icon-clipboard4"></i>更换手机号</h4>
-
-                          <div class="form-group">
-                            <label for="issueinput1">旧手机号</label>
-                            <input type="text" id="issueinput1" class="form-control" placeholder="old phone number"
-                              name="issuetitle" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                              data-title="">
-                          </div>
-                          <div class="form-group">
-                            <label for="issueinput1_2">验证码</label>
-                            <input type="text" id="issueinput1_3" class="form-control" placeholder="verification code"
-                              name="issuetitle" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                              data-title="">
-                            <div style="margin:10px">
-                              <button type="submit" class="btn btn-warning">获取验证码</button>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="issueinput1_4">新手机号</label>
-                            <input type="text" id="issueinput1_5" class="form-control" placeholder="new phone number"
-                              name="issuetitle" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                              data-title="">
-                          </div>
-
-                          <h4 class="form-section"><i class="icon-clipboard4"></i>设置密保问题</h4>
-
-                          <div class="form-group">
-                            <label for="issueinput2">密保问题1</label>
-                            <input type="text" id="issueinput2" class="form-control" placeholder="question 1"
-                              name="openedby" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                              data-title="">
-                          </div>
-                          <div class="form-group">
-                            <label for="issueinput2">答案1</label>
-                            <input type="text" id="issueinput2" class="form-control" placeholder="answer 1"
-                              name="openedby" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                              data-title="">
-                          </div>
-
-                          <div class="form-group">
-                            <label for="issueinput2">密保问题2</label>
-                            <input type="text" id="issueinput2" class="form-control" placeholder="question 2"
-                              name="openedby" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                              data-title="">
-                          </div>
-                          <div class="form-group">
-                            <label for="issueinput2">答案2</label>
-                            <input type="text" id="issueinput2" class="form-control" placeholder="answer 2"
-                              name="openedby" data-toggle="tooltip" data-trigger="hover" data-placement="top"
-                              data-title="">
-                          </div>
-
-                        </div>
-
-                        <div class="form-actions">
-                          <button type="button" class="btn btn-warning mr-1">
-                            <i class="icon-cross2"></i> 重置
-                          </button>
-                          <button type="submit" class="btn btn-primary">
-                            <i class="icon-check2"></i> 提交
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </section>
-        <!-- // Basic form layout section end -->
       </div>
     </div>
   </div>
   <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-
-  <footer class="footer footer-static footer-light navbar-border">
-    <p class="clearfix text-muted text-sm-center mb-0 px-2"><span
-        class="float-md-left d-xs-block d-md-inline-block">Copyright &copy; 2017 <a
-          href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank"
-          class="text-bold-800 grey darken-2">PIXINVENT </a>, All rights reserved. </span><span
-        class="float-md-right d-xs-block d-md-inline-block">Hand-crafted & Made with <i
-          class="icon-heart5 pink"></i></span></p>
-  </footer>
+  <!-- 
+    <footer class="footer footer-static footer-light navbar-border">
+      <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2017 <a href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent" target="_blank" class="text-bold-800 grey darken-2">PIXINVENT </a>, All rights reserved. </span><span class="float-md-right d-xs-block d-md-inline-block">Hand-crafted & Made with <i class="icon-heart5 pink"></i></span></p>
+    </footer> -->
 
   <!-- BEGIN VENDOR JS-->
   <script src="../app-assets/js/core/libraries/jquery.min.js" type="text/javascript"></script>
@@ -276,7 +206,6 @@
   <script src="../app-assets/js/scripts/documentation.js" type="text/javascript"></script>
   <script src="../app-assets/vendors/js/ui/affix.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
-
   <script type="text/javascript">
     $(document).ready(function () {
       if (sessionStorage.getItem('loggedIn'))
@@ -290,12 +219,65 @@
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();
-            window.location.href = "./login.ejs";
           }
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "./login.ejs";
+        window.location.href = "login.ejs";
+    });
+    $("#submit-btn").click(function () {
+      let username = $("#user-name").val();
+      let password = $("#user-password").val();
+      $.ajax({
+        dataType: "JSON",
+        data: {
+          username: username,
+          password: password
+        },
+        url: "/login",
+        type: "POST",
+        success: function (data) {
+          if (data.status == 1) {
+            alert("登陆成功");
+            sessionStorage.setItem('loggedIn', true);
+            window.location.href = "index.ejs";
+          }
+          else if (data.status == 0) {
+            alert("请检查您的账号与密码是否匹配");
+          }
+          else if (data.status == -1) {
+            alert("服务器错误");
+          }
+          else {
+            alert("未知错误");
+          }
+        },
+        error: function (data) {
+          alert("服务器请求错误，请重试");
+        }
+      });
+    });
+
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (sessionStorage.getItem('loggedIn'))
+        document.getElementById("login-btn").innerHTML = "<i class=\"icon-bag3\"></i> 退出";
+      else
+        document.getElementById("login-btn").innerHTML = "<i class=\"icon-bag3\"></i> 登录";
+    })
+    $("#login-btn").click(function () {
+      if (sessionStorage.getItem('loggedIn'))
+        $.post("/exit", function (data) {
+          if (data.status == 1) {
+            alert("登出成功");
+            sessionStorage.clear();
+            window.location.href = "login.ejs";
+          }
+          if (data.status == 0) alert("登出失败");
+        });
+      else
+        window.location.href = "login.ejs";
     });
   </script>
 </body>

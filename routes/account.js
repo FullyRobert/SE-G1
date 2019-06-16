@@ -7,11 +7,11 @@ var amodel = require('../models/accountModel.js');
 
 
 router.get('/', function(req, res, next) {
-	res.render('login');
+	res.render('account/login');
 });
 
 router.get('/resetpwd', function(req, res){
-    res.render('resetpwd');
+    res.render('account/resetpwd');
 })
 
 router.post('/resetpwd', function(req, res){
@@ -32,7 +32,7 @@ router.post('/resetpwd', function(req, res){
 });
 
 router.get('/resetpwd2',function(req, res){
-    res.render('resetpwd2');
+    res.render('account/resetpwd2');
 });
 
 router.post('/resetpwd2',function(req,res){
@@ -68,7 +68,7 @@ router.post('/queryOrder', function(req, res){
 router.get('/account.ejs', function(req, res) {
     //登陆校验
     if (!req.session.token) {
-        res.redirect('/login.ejs');
+        res.redirect('/account/login.ejs');
         //res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
         return;
     }
@@ -185,16 +185,14 @@ router.get('/example', (req, res) => {
 router.get('/index.ejs', (req,res) =>
 { 
     if (!req.session.token) {
-        res.redirect('/login.ejs');
+        res.redirect('/account/login.ejs');
         //res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
         return;
     }
     else
-        res.render('index');
+        res.render('account/index');
 });
 
-router.get('/admin.ejs', (req,res) =>
-    { res.render('admin'); });
     
 router.get('/balance.ejs', (req, res) => {
        console.log("balance succeed");
@@ -204,7 +202,7 @@ router.get('/balance.ejs', (req, res) => {
             res.send({status: -1}).end();   //服务器异常
         }
         else{
-       res.render('balance',{balance : ret[0].balance});
+       res.render('account/balance',{balance : ret[0].balance});
        console.log("123");
         }
      });})
@@ -223,7 +221,7 @@ router.get('/charge.ejs', (req,res) =>
           res.send({status: -1}).end();   //服务器异常
       }
       else{
-     res.render('charge',{balance : ret[0].balance, username:ret[0].username});
+     res.render('account/charge',{balance : ret[0].balance, username:ret[0].username});
      console.log("123");
       }
    }); });
@@ -231,12 +229,12 @@ router.get('/charge.ejs', (req,res) =>
 
 router.get('/change_passwd.ejs', (req,res) =>
 {   if (!req.session.token) {
-    res.redirect('/login.ejs');
+    res.redirect('/account/login.ejs');
     //res.send("<script>alert('登录态过期，请重新登录！');</script>").end();
     return;
     }
     else
-    res.render('resetpwd2'); 
+    res.render('account/resetpwd2');
 });
 
 router.post('/transaction_select', (req,res) =>
@@ -254,15 +252,16 @@ router.post('/transaction_select', (req,res) =>
 
 router.get('/error.ejs', (req,res) =>
 	{ res.render('error'); });
-
+router.get('/admin.ejs', (req,res) =>
+    { res.redirect('admin'); });
 router.get('/refund.ejs', (req,res) =>
-	{ res.render('refund'); });
+	{ res.render('account/refund'); });
 router.get('/login.ejs', (req,res) =>
-	{ res.render('login'); });
+	{ res.render('account/login'); });
 router.get('/transaction.ejs', (req,res) =>
-	{ res.render('transaction'); });
+	{ res.render('account/transaction'); });
 router.get('/register.ejs', (req,res) =>
-	{ res.render('register'); });
+	{ res.render('account/register'); });
 
 
 module.exports = router;

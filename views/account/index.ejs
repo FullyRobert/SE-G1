@@ -76,7 +76,7 @@
                 <i class="icon-bag3"></i>
                 登陆
               </button></li>
-            <li class="nav-item"><a href="./account.ejs" target="_blank" class="btn btn-success btn-doc-header"><i
+            <li class="nav-item"><a href="account.ejs" target="_blank" class="btn btn-success btn-doc-header"><i
                   class="icon-bag3"></i> 我的</a></li>
           </ul>
         </div>
@@ -95,7 +95,7 @@
     <div class="main-menu-content menu-accordion">
       <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
         <li class=" nav-item"><a href="index.ejs"><i class="icon-home3"></i><span data-i18n="nav.dash.main"
-              class="menu-title">我的账户</span></a>
+                                                                                  class="menu-title">我的账户</span></a>
           <ul class="menu-content">
             <li class="active"><a href="account.ejs" data-i18n="nav.dash.main" class="menu-item">修改信息</a>
             </li>
@@ -112,7 +112,7 @@
               data-i18n="" class="menu-title">在线预定</span></a>
         </li>
         <li class=" nav-item"><a href="transaction.ejs"><i class="icon-folder3"></i><span data-i18n=""
-              class="menu-title">我的订单</span></a>
+                                                                                          class="menu-title">我的订单</span></a>
         </li>
       </ul>
     </div>
@@ -217,12 +217,12 @@
           if (data.status == 1) {
             alert("登出成功");
             sessionStorage.clear();
-            window.location.href = "./login.ejs";
+            window.location.href = "login.ejs";
           }
           if (data.status == 0) alert("登出失败");
         });
       else
-        window.location.href = "./login.ejs";
+        window.location.href = "login.ejs";
     });
   </script>
 </body>
